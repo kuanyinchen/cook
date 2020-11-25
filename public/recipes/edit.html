@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>食譜編輯 - Just Make</title>
+    </head>
+    <body>
+        <form action="/addproduc/product" method="POST" enctype="multipart/form-data">
+            <span>食譜名稱：</span>
+            <input type="text" name="title" class="form-control-file" />
+            <br />
+            <span>食譜封面照：</span>
+            <input type="file" class="form-control-file" name="banner" multiple />
+            <br />
+            <span>簡介：</span>
+            <input type="text" name="description" class="form-control-file" />
+            <br />
+            <span>份量（人份）：</span>
+            <input type="text" name="quantity" class="form-control-file" />
+            <br />
+            <span>烹調時間：</span>
+            <input type="text" name="time" class="form-control-file" />
+            <br />
+            <span>食材：</span>
+            <table class="table table-bordered" id="example">
+                <thead>
+                    <tr>
+                        <th class="text-center">食材</th>
+                        <th class="text-center">份量</th>
+                        <th class="text-center">熱量</th>
+                    </tr>
+                </thead>
+                <tbody id="append_position">
+                    <tr class="row_data">
+                        <td class="text-center"><input type="text" class="a_row" value="" /></td>
+                        <td class="text-center"><input type="text" class="b_row" value="" /></td>
+                        <td class="text-center"><input type="text" class="c_row" value="" /></td>
+                    </tr>
+                    <tr class="row_data">
+                        <td class="text-center"><input type="text" class="a_row" value="" /></td>
+                        <td class="text-center"><input type="text" class="b_row" value="" /></td>
+                        <td class="text-center"><input type="text" class="c_row" value="" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="total"></div>
+
+            <div id="template" style="display: none">
+                <table>
+                    <tr class="row_data">
+                        <td class="text-center"><input type="text" class="a_row" value="" /></td>
+                        <td class="text-center"><input type="text" class="b_row" value="" /></td>
+                        <td class="text-center"><input type="text" class="c_row" value="" /></td>
+                    </tr>
+                </table>
+            </div>
+            <input type="button" value="+" id="add_row" />
+            <br />
+            <span>步驟：</span>
+            <input type="text" name="step" class="form-control-file" />
+            <br />
+            <input type="submit" value="送出資料" class="btn btn-default" />
+            <script src="../js/upload.js"></script>
+        </form>
+    </body>
+</html>
