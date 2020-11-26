@@ -7,7 +7,7 @@
         <title>食譜編輯 - Just Make</title>
     </head>
     <body>
-        <form action="/addproduc/product" method="POST" enctype="multipart/form-data">
+        <form action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
             <span>食譜名稱：</span>
             <input type="text" name="title" class="form-control-file" />
             <br />
@@ -38,14 +38,8 @@
                         <td class="text-center"><input type="text" class="b_row" value="" /></td>
                         <td class="text-center"><input type="text" class="c_row" value="" /></td>
                     </tr>
-                    <tr class="row_data">
-                        <td class="text-center"><input type="text" class="a_row" value="" /></td>
-                        <td class="text-center"><input type="text" class="b_row" value="" /></td>
-                        <td class="text-center"><input type="text" class="c_row" value="" /></td>
-                    </tr>
                 </tbody>
             </table>
-            <div id="total"></div>
 
             <div id="template" style="display: none">
                 <table>
@@ -53,13 +47,46 @@
                         <td class="text-center"><input type="text" class="a_row" value="" /></td>
                         <td class="text-center"><input type="text" class="b_row" value="" /></td>
                         <td class="text-center"><input type="text" class="c_row" value="" /></td>
+                        <!-- <div id="del_ingredient"> -->
+                        <td>
+                            <button>x</button>
+                        </td>
+                        <!-- </div> -->
                     </tr>
                 </table>
             </div>
             <input type="button" value="+" id="add_row" />
             <br />
             <span>步驟：</span>
-            <input type="text" name="step" class="form-control-file" />
+            <table class="table table-bordered" id="step">
+                <thead>
+                    <tr>
+                        <th class="text-center">照片</th>
+                        <th class="text-center">說明</th>
+                    </tr>
+                </thead>
+                <tbody id="append_step">
+                    <tr class="step_data">
+                        <td><input type="file" class="form-control-file" name="step_photo" multiple /></td>
+                        <td class="text-center"><input type="text" class="step_text" value="" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="stepbystep" style="display: none">
+                <table>
+                    <tr class="step_data">
+                        <td><input type="file" class="form-control-file" name="step_photo" multiple /></td>
+                        <td class="text-center"><input type="text" class="step_text" value="" /></td>
+                        <!-- <div id="del_step"> -->
+                        <td>
+                            <button>x</button>
+                        </td>
+                        <!-- </div> -->
+                    </tr>
+                </table>
+            </div>
+            <input type="button" value="+" id="add_step" />
             <br />
             <input type="submit" value="送出資料" class="btn btn-default" />
             <script src="../js/upload.js"></script>

@@ -1,2 +1,1 @@
-const{query} = require('../models/mysqlcon');
-
+const { query } = require('../models/mysqlcon');
