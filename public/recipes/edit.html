@@ -12,7 +12,7 @@
             <input type="text" name="title" class="form-control-file" />
             <br />
             <span>食譜封面照：</span>
-            <input type="file" class="form-control-file" name="banner" multiple />
+            <input type="file" class="form-control-file" name="cover" multiple />
             <br />
             <span>簡介：</span>
             <input type="text" name="description" class="form-control-file" />
@@ -24,69 +24,28 @@
             <input type="text" name="time" class="form-control-file" />
             <br />
             <span>食材：</span>
-            <table class="table table-bordered" id="example">
-                <thead>
-                    <tr>
-                        <th class="text-center">食材</th>
-                        <th class="text-center">份量</th>
-                        <th class="text-center">熱量</th>
-                    </tr>
-                </thead>
-                <tbody id="append_position">
-                    <tr class="row_data">
-                        <td class="text-center"><input type="text" class="a_row" value="" /></td>
-                        <td class="text-center"><input type="text" class="b_row" value="" /></td>
-                        <td class="text-center"><input type="text" class="c_row" value="" /></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div id="template" style="display: none">
-                <table>
-                    <tr class="row_data">
-                        <td class="text-center"><input type="text" class="a_row" value="" /></td>
-                        <td class="text-center"><input type="text" class="b_row" value="" /></td>
-                        <td class="text-center"><input type="text" class="c_row" value="" /></td>
-                        <!-- <div id="del_ingredient"> -->
-                        <td>
-                            <button>x</button>
-                        </td>
-                        <!-- </div> -->
-                    </tr>
-                </table>
+            <div class="element-wrapper">
+                <div class="row" id="rowTest">
+                    <input type="text" name="ingredient" placeholder="食材" />
+                    <input type="text" name="grams" placeholder="克數" />
+                    <input type="text" name="calories" placeholder="熱量" />
+                    <input type="text" name="proteins" placeholder="蛋白質" />
+                    <input type="text" name="carbohydrates" placeholder="碳水" />
+                    <input type="text" name="fat" placeholder="脂肪" />
+                    <button class="btn-remove-row">-</button>
+                </div>
             </div>
-            <input type="button" value="+" id="add_row" />
+            <button id="btn-add-row">+</button>
             <br />
             <span>步驟：</span>
-            <table class="table table-bordered" id="step">
-                <thead>
-                    <tr>
-                        <th class="text-center">照片</th>
-                        <th class="text-center">說明</th>
-                    </tr>
-                </thead>
-                <tbody id="append_step">
-                    <tr class="step_data">
-                        <td><input type="file" class="form-control-file" name="step_photo" multiple /></td>
-                        <td class="text-center"><input type="text" class="step_text" value="" /></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div id="stepbystep" style="display: none">
-                <table>
-                    <tr class="step_data">
-                        <td><input type="file" class="form-control-file" name="step_photo" multiple /></td>
-                        <td class="text-center"><input type="text" class="step_text" value="" /></td>
-                        <!-- <div id="del_step"> -->
-                        <td>
-                            <button>x</button>
-                        </td>
-                        <!-- </div> -->
-                    </tr>
-                </table>
+            <div class="element-wrapper1">
+                <div class="row1" id="stepbystep">
+                    <input type="file" class="form-control-file" name="step_p" multiple />
+                    <input type="text" name="step_d" placeholder="說明" />
+                    <button class="btn-remove-step">-</button>
+                </div>
             </div>
-            <input type="button" value="+" id="add_step" />
+            <button id="btn-add-step">+</button>
             <br />
             <input type="submit" value="送出資料" class="btn btn-default" />
             <script src="../js/upload.js"></script>
