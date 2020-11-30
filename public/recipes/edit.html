@@ -6,8 +6,35 @@
         <meta name="viewport" content="width=device-width" />
         <title>食譜編輯 - Just Make</title>
     </head>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        const socket = io();
+        $(document).ready(function () {
+            let i = 0;
+            const selectIngredientEle = document.querySelector('#ingredient' + i);
+            const selectGramsEle = document.querySelector('#grams' + i);
+            [selectIngredientEle, selectGramsEle].forEach((ele) => {
+                ele.addEventListener('change', (event) => {
+                    console.log('HIHHI');
+                    set = {
+                        ingredient: selectIngredientEle.value,
+                        gram: selectGramsEle.value,
+                    };
+                    socket.emit('query_nutrition', set);
+                    return false;
+                });
+            });
+            socket.on('nutrition_from_db', function (data) {
+                document.getElementById('calories' + i).innerHTML = '熱量：' + data.calories;
+                document.getElementById('proteins' + i).innerHTML = '蛋白質：' + data.protein;
+                document.getElementById('fat' + i).innerHTML = '脂肪：' + data.fat;
+                document.getElementById('carbohydrates' + i).innerHTML = '碳水：' + data.carbohydrates;
+            });
+        });
+    </script>
     <body>
-        <form action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
+        <form id="form" action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
             <span>食譜名稱：</span>
             <input type="text" name="title" class="form-control-file" />
             <br />
@@ -25,30 +52,30 @@
             <br />
             <span>食材：</span>
             <div class="element-wrapper">
-                <div class="row" id="rowTest">
-                    <input type="text" name="ingredient" placeholder="食材" />
-                    <input type="text" name="grams" placeholder="克數" />
-                    <input type="text" name="calories" placeholder="熱量" />
-                    <input type="text" name="proteins" placeholder="蛋白質" />
-                    <input type="text" name="carbohydrates" placeholder="碳水" />
-                    <input type="text" name="fat" placeholder="脂肪" />
-                    <button class="btn-remove-row">-</button>
+                <div class="row" id="div0">
+                    <input type="text" name="ingredient" id="ingredient0" placeholder="食材" value="" />
+                    <input type="text" name="grams" id="grams0" placeholder="克數" value="" />
+                    <div name="calories" id="calories0">熱量：</div>
+                    <div name="proteins" id="proteins0">蛋白質：</div>
+                    <div name="carbohydrates" id="carbohydrates0">碳水：</div>
+                    <div name="fat" id="fat0">脂肪</div>
+                    <button type="button" class="btn-remove-row">-</button>
                 </div>
             </div>
-            <button id="btn-add-row">+</button>
+            <button type="button" id="btn-add-row">+</button>
             <br />
             <span>步驟：</span>
             <div class="element-wrapper1">
                 <div class="row1" id="stepbystep">
                     <input type="file" class="form-control-file" name="step_p" multiple />
                     <input type="text" name="step_d" placeholder="說明" />
-                    <button class="btn-remove-step">-</button>
+                    <button type="button" class="btn-remove-step">-</button>
                 </div>
             </div>
-            <button id="btn-add-step">+</button>
+            <button type="button" id="btn-add-step">+</button>
             <br />
-            <input type="submit" value="送出資料" class="btn btn-default" />
-            <script src="../js/upload.js"></script>
+            <input type="submit" value="送出資料" id="click" />
         </form>
+        <script src="../js/upload.js"></script>
     </body>
 </html>
