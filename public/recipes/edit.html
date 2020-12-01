@@ -16,7 +16,6 @@
             const selectGramsEle = document.querySelector('#grams' + i);
             [selectIngredientEle, selectGramsEle].forEach((ele) => {
                 ele.addEventListener('change', (event) => {
-                    console.log('HIHHI');
                     set = {
                         ingredient: selectIngredientEle.value,
                         gram: selectGramsEle.value,
@@ -30,13 +29,25 @@
                 document.getElementById('proteins' + i).innerHTML = '蛋白質：' + data.protein;
                 document.getElementById('fat' + i).innerHTML = '脂肪：' + data.fat;
                 document.getElementById('carbohydrates' + i).innerHTML = '碳水：' + data.carbohydrates;
+                document.getElementById('total_calories').innerHTML = data.calories;
+                document.getElementById('total_proteins').innerHTML = data.protein;
+                document.getElementById('total_fat').innerHTML = data.fat;
+                document.getElementById('total_carbohydrates').innerHTML = data.carbohydrates;
             });
         });
     </script>
     <body>
         <form id="form" action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
             <span>食譜名稱：</span>
-            <input type="text" name="title" class="form-control-file" />
+            <input type="text" name="title" id="title" class="form-control-file" />
+            <br />
+            <span>食譜分類：</span>
+            <select name="category" id="category">
+                <option value="">請選擇食譜分類</option>
+                <option value="點心烘焙">點心烘焙</option>
+                <option value="健身" selected>健身</option>
+                <option value="寵物鮮食">寵物鮮食</option>
+            </select>
             <br />
             <span>食譜封面照：</span>
             <input type="file" class="form-control-file" name="cover" multiple />
@@ -55,11 +66,11 @@
                 <div class="row" id="div0">
                     <input type="text" name="ingredient" id="ingredient0" placeholder="食材" value="" />
                     <input type="text" name="grams" id="grams0" placeholder="克數" value="" />
+                    <button type="button" class="btn-remove-row">-</button>
                     <div name="calories" id="calories0">熱量：</div>
                     <div name="proteins" id="proteins0">蛋白質：</div>
                     <div name="carbohydrates" id="carbohydrates0">碳水：</div>
-                    <div name="fat" id="fat0">脂肪</div>
-                    <button type="button" class="btn-remove-row">-</button>
+                    <div name="fat" id="fat0">脂肪：</div>
                 </div>
             </div>
             <button type="button" id="btn-add-row">+</button>
@@ -74,6 +85,18 @@
             </div>
             <button type="button" id="btn-add-step">+</button>
             <br />
+            <br />
+            <br />
+            <div class="sum" id="sum">
+                總熱量：
+                <div name="total_calories" id="total_calories"></div>
+                總蛋白質：
+                <div name="total_proteins" id="total_proteins"></div>
+                總碳水：
+                <div name="total_carbohydrates" id="total_carbohydrates"></div>
+                總脂肪：
+                <div name="total_fat" id="total_fat"></div>
+            </div>
             <input type="submit" value="送出資料" id="click" />
         </form>
         <script src="../js/upload.js"></script>

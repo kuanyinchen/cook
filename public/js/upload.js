@@ -9,15 +9,15 @@ $('#btn-add-row').click(() => {
             eleId +
             '" placeholder="食材" /><input type="text" name="grams" id="grams' +
             eleId +
-            '" placeholder="克數" /><div name="calories" id="calories' +
+            '" placeholder="克數" /><button type="button" class="btn-remove-row">-</button><br>熱量：<div name="calories" id="calories' +
             eleId +
-            '">熱量：</div><div name="proteins" id="proteins' +
+            '"></div>蛋白質：<div name="proteins" id="proteins' +
             eleId +
-            '">蛋白質：</div><div name="carbohydrates" id="carbohydrates' +
+            '"></div>碳水：<div name="carbohydrates" id="carbohydrates' +
             eleId +
-            '">碳水：</div><div name="fat" id="fat' +
+            '"></div>脂肪:<div name="fat" id="fat' +
             eleId +
-            '">脂肪</div><button class="btn-remove-row">-</button></div>'
+            '"></div></div>'
     );
     const socket = io();
     $(function () {
@@ -35,10 +35,18 @@ $('#btn-add-row').click(() => {
             });
         });
         socket.on('nutrition_from_db', function (data) {
-            document.getElementById('calories' + i).innerHTML = '熱量：' + data.calories;
-            document.getElementById('proteins' + i).innerHTML = '蛋白質：' + data.protein;
-            document.getElementById('fat' + i).innerHTML = '脂肪：' + data.fat;
-            document.getElementById('carbohydrates' + i).innerHTML = '碳水：' + data.carbohydrates;
+            document.getElementById('calories' + i).innerHTML = data.calories;
+            document.getElementById('proteins' + i).innerHTML = data.protein;
+            document.getElementById('fat' + i).innerHTML = data.fat;
+            document.getElementById('carbohydrates' + i).innerHTML = data.carbohydrates;
+            document.getElementById('total_calories').innerHTML =
+                parseInt(document.getElementById('total_calories').innerHTML) + data.calories;
+            document.getElementById('total_proteins').innerHTML =
+                parseInt(document.getElementById('total_proteins').innerHTML) + data.protein;
+            document.getElementById('total_carbohydrates').innerHTML =
+                parseInt(document.getElementById('total_carbohydrates').innerHTML) + data.carbohydrates;
+            document.getElementById('total_fat').innerHTML =
+                parseInt(document.getElementById('total_fat').innerHTML) + data.fat;
         });
     });
     eleId++;
@@ -50,7 +58,19 @@ $('#btn-add-step').click(() => {
             stepId +
             '"><input type="file" class="form-control-file" name="step_p" multiple /><input type="text" name="step_d" id ="step_d' +
             stepId +
-            '"placeholder="說明" /><button class="btn-remove-step">-</button></div>'
+            '"placeholder="說明" /><button type="button" class="btn-remove-step">-</button></div>'
     );
     stepId++;
+});
+
+$('#click').on('click', function () {
+    let title = document.getElementById('title').value;
+    let sum_calories = document.getElementById('total_calories').innerHTML;
+    let sum_proteins = document.getElementById('total_proteins').innerHTML;
+    let sum_carbohydrates = document.getElementById('total_carbohydrates').innerHTML;
+    let sum_fat = document.getElementById('total_fat').innerHTML;
+    let category = document.getElementById('category').value;
+    let set = [sum_calories, sum_proteins, sum_carbohydrates, sum_fat, title, category]; //[1,2,3,4]
+
+    socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
 });

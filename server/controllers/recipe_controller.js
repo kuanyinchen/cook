@@ -7,28 +7,29 @@ const pageSize = 6;
 const createRecipe = async (req, res) => {
     const body = req.body;
 
-    const recipe = {
-        title: body.title,
-        description: body.description,
-        quantity: body.quantity,
-        time: body.time,
-        ingredients: body.ingredient,
-        grams: body.grams,
-        // calories: body.calories,
-        // carbohydrates: body.carbohydrates,
-        // fat: body.fat,
-        step_description: body.step_d,
-    };
-
     let images = [];
     for (let i = 0; i < req.files.step_p.length; i++) {
         let image = req.files.step_p[i].key;
-        images.push(`${image}`);
+        let other_pho = image.split('/');
+        images.push(other_pho[1]);
     }
-    recipe.cover = req.files.cover[0].key;
-    recipe.step_pic = images;
-    console.log(recipe);
-    //res.status(200).send({ recipeId });
+    let mainPhoto = req.files.cover[0].key;
+    let main_pho = mainPhoto.split('/');
+
+    const recipe = {
+        title: body.title,
+        description: body.description,
+        size: body.quantity,
+        cooktime: body.time,
+        ingredients: JSON.stringify(body.ingredient),
+        grams: JSON.stringify(body.grams),
+        main_photo: main_pho[1],
+        other_photo: JSON.stringify(images),
+        step_explain: body.step_d,
+    };
+
+    const recipeId = Recipe.createRecipe(recipe);
+    res.status(200).redirect('/');
 };
 
 module.exports = {

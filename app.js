@@ -32,7 +32,6 @@ io.on('connection', function (socket) {
         const sql = `Select * From nutritions where name = "${data.ingredient}"`;
         mysqlCon.query(sql, function (err, rows) {
             if (err) throw err;
-            console.log(rows[0].calories);
             socket.emit('nutrition_from_db', {
                 calories: rows[0].calories,
                 protein: rows[0].protein,
@@ -40,16 +39,23 @@ io.on('connection', function (socket) {
                 carbohydrates: rows[0].carbohydrates,
             });
         });
-
-        // let info = {
-        //     name: data.ingredient,
-        // };
-        // let sql = `SELECT calories,protein,fat,carbohydrates FROM nutritions WHERE SET ?`;
-        // const queryNutritions = query(sql, info, (err, result) => {
-        //     console.log('here');
-        //     console.log(result);
-        // });
-        //{ ingredient: '蛋', gram: '' } || { ingredient: '蛋', gram: '100g' }
+    });
+});
+io.on('connection', function (socket) {
+    socket.on('total_nutritions', function (data) {
+        let info = {
+            calories: data[0],
+            proteins: data[1],
+            fat: data[2],
+            carbohydrates: data[3],
+            title: data[4],
+            category: data[5],
+        };
+        const sql = `INSERT INTO recipeAlbum SET ?`;
+        mysqlCon.query(sql, info, (err, rows) => {
+            if (err) throw err;
+            console.log(rows);
+        });
     });
 });
 
@@ -67,8 +73,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.get('/', function (req, res) {
 //     res.send('Hello World!');
 // });
+app.get('/', (req, res) => {
+    res.send('HOME');
+});
 
-app.use('/api/' + API_VERSION, [require('./server/routes/upload_route')]);
+app.use('/api/' + API_VERSION, [require('./server/routes/upload_route'), require('./server/routes/recipes_route')]);
 
 // Page not found
 app.use(function (req, res, next) {
