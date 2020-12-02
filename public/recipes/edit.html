@@ -3,27 +3,11 @@
     <head>
         <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width,initial-scale =1.0" />
+        <!-- <link rel="stylesheet" href="../css/bootstrap.min.css" /> -->
         <title>食譜編輯 - Just Make</title>
     </head>
 
-    <style>
-        body {
-            font-size: 16px;
-            font-family: 'Noto Sans TC', '微軟正黑體', '新細明體', arial, sans-serif;
-            color: #3f3a3a;
-            line-height: 2.5em;
-        }
-        textarea {
-            width: 400px;
-            height: 100px;
-            padding: 5px;
-        }
-        input {
-            width: 300px;
-            padding: 5px;
-        }
-    </style>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
@@ -55,6 +39,7 @@
         });
     </script>
     <body>
+        <h3 class="text-center mb-3"><i class="fas fa-utensils"></i>食譜上傳</h3>
         <form id="form" action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
             <span>食譜名稱：</span>
             <input type="text" name="title" id="title" class="form-control-file" />
