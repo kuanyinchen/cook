@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { PORT, API_VERSION } = process.env;
 const port = PORT;
-
+const fetch = require('node-fetch');
 // Express Initialization
 const express = require('express');
 const bodyparser = require('body-parser');

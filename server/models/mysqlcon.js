@@ -1,5 +1,6 @@
 require('dotenv').config();
 const mysql = require('mysql');
+const { promisify } = require('util'); // util from native nodejs library
 const { DB_Host, DB_Username, DB_Password, DB_Database } = process.env;
 
 const mysqlConfig = {
@@ -20,6 +21,13 @@ const query = (statement, info) => {
     });
 };
 
+const promiseTransaction = promisify(mysqlCon.beginTransaction).bind(mysqlCon);
+const promiseCommit = promisify(mysqlCon.commit).bind(mysqlCon);
+const promiseRollback = promisify(mysqlCon.rollback).bind(mysqlCon);
+
 module.exports = {
     query,
+    rollback: promiseRollback,
+    transaction: promiseTransaction,
+    commit: promiseCommit,
 };

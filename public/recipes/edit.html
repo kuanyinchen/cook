@@ -6,6 +6,24 @@
         <meta name="viewport" content="width=device-width" />
         <title>食譜編輯 - Just Make</title>
     </head>
+
+    <style>
+        body {
+            font-size: 16px;
+            font-family: 'Noto Sans TC', '微軟正黑體', '新細明體', arial, sans-serif;
+            color: #3f3a3a;
+            line-height: 2.5em;
+        }
+        textarea {
+            width: 400px;
+            height: 100px;
+            padding: 5px;
+        }
+        input {
+            width: 300px;
+            padding: 5px;
+        }
+    </style>
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
@@ -53,7 +71,7 @@
             <input type="file" class="form-control-file" name="cover" multiple />
             <br />
             <span>簡介：</span>
-            <input type="text" name="description" class="form-control-file" />
+            <textarea name="description" class="form-control-file"></textarea>
             <br />
             <span>份量（人份）：</span>
             <input type="text" name="quantity" class="form-control-file" />
@@ -65,6 +83,7 @@
             <div class="element-wrapper">
                 <div class="row" id="div0">
                     <input type="text" name="ingredient" id="ingredient0" placeholder="食材" value="" />
+                    <div id="matched_list"></div>
                     <input type="text" name="grams" id="grams0" placeholder="克數" value="" />
                     <button type="button" class="btn-remove-row">-</button>
                     <div name="calories" id="calories0">熱量：</div>
@@ -79,7 +98,7 @@
             <div class="element-wrapper1">
                 <div class="row1" id="stepbystep">
                     <input type="file" class="form-control-file" name="step_p" multiple />
-                    <input type="text" name="step_d" placeholder="說明" />
+                    <textarea name="step_d" placeholder="說明"></textarea>
                     <button type="button" class="btn-remove-step">-</button>
                 </div>
             </div>

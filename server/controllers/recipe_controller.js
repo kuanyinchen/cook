@@ -25,7 +25,7 @@ const createRecipe = async (req, res) => {
         grams: JSON.stringify(body.grams),
         main_photo: main_pho[1],
         other_photo: JSON.stringify(images),
-        step_explain: body.step_d,
+        step_explain: JSON.stringify(body.step_d),
     };
 
     const recipeId = Recipe.createRecipe(recipe);

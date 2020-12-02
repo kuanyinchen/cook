@@ -56,9 +56,9 @@ $('#btn-add-step').click(() => {
     $('.element-wrapper1').append(
         '<div id="div' +
             stepId +
-            '"><input type="file" class="form-control-file" name="step_p" multiple /><input type="text" name="step_d" id ="step_d' +
+            '"><input type="file" class="form-control-file" name="step_p" multiple /><textarea name="step_d" id ="step_d' +
             stepId +
-            '"placeholder="說明" /><button type="button" class="btn-remove-step">-</button></div>'
+            '"placeholder="說明" /></textarea><button type="button" class="btn-remove-step">-</button></div>'
     );
     stepId++;
 });
@@ -74,3 +74,32 @@ $('#click').on('click', function () {
 
     socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
 });
+
+//search ingredients.json and filter
+const ingredient = document.getElementById('ingredient0');
+const match = document.getElementById('matched_list');
+const searchIngredient = async (searchText) => {
+    const res = await fetch('../data/ingredients.json');
+    const ingredients = await res.json();
+
+    //get matches to current text input
+    let matches = ingredients.filter((ingredient) => {
+        const regex = new RegExp(`${searchText}`, 'gi');
+        return ingredient.name.match(regex);
+    });
+    if (searchText.length === 0) {
+        matches = [];
+        matched_list.innerHTML = '';
+    }
+    outputHTML(matches);
+};
+
+const outputHTML = (matches) => {
+    if (matches.length > 0) {
+        const html = matches.map((match) => `<div class="card"><h4>${match.name}</span></h4></div>)`).join('');
+
+        matched_list.innerHTML = html;
+    }
+};
+
+ingredient.addEventListener('input', () => searchIngredient(ingredient.value));

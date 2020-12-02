@@ -8,6 +8,9 @@ const createRecipe = async (recipe) => {
     });
 };
 
+// const getProduct = async() =>{
+
+// }
 module.exports = {
     createRecipe,
 };
