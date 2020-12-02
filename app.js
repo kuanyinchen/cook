@@ -7,6 +7,9 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
 
+//streaming video
+const fs = require('fs');
+
 //socket.io
 
 //要再想辦法搬家
@@ -77,7 +80,11 @@ app.get('/', (req, res) => {
     res.send('HOME');
 });
 
-app.use('/api/' + API_VERSION, [require('./server/routes/upload_route'), require('./server/routes/recipes_route')]);
+app.use('/api/' + API_VERSION, [
+    require('./server/routes/upload_route'),
+    require('./server/routes/recipes_route'),
+    require('./server/routes/video_route'),
+]);
 
 // Page not found
 app.use(function (req, res, next) {
