@@ -3,11 +3,25 @@ const socket = io();
 var eleId = 1;
 var stepId = 1;
 
+loadingredients = async () => {
+    const res = await fetch('../data/ingredients.json');
+    const ingredients = await res.json();
+    for (let i = 0; i < ingredients.length; i++) {
+        let ingredient = ingredients[i];
+        //$("#matched_list").append('<option value="'ingredient.name'"></option>');
+        $(`#matched_list${eleId - 1}`).append(`<option value=${ingredient.name}></option>`);
+    }
+};
+
+window.onload = function () {
+    loadingredients();
+};
+
 //畫面上原本的食材克數欄位
 $(document).ready(function () {
-    let i = 0;
-    const selectIngredientEle = document.querySelector('#ingredient' + i);
-    const selectGramsEle = document.querySelector('#grams' + i);
+    //let i = 0;
+    const selectIngredientEle = document.querySelector('#ingredient0');
+    const selectGramsEle = document.querySelector('#grams0');
     [selectIngredientEle, selectGramsEle].forEach((ele) => {
         ele.addEventListener('change', (event) => {
             set = {
@@ -19,10 +33,10 @@ $(document).ready(function () {
         });
     });
     socket.on('nutrition_from_db', function (data) {
-        document.getElementById('calories' + i).innerHTML = '熱量：' + data.calories;
-        document.getElementById('proteins' + i).innerHTML = '蛋白質：' + data.protein;
-        document.getElementById('fat' + i).innerHTML = '脂肪：' + data.fat;
-        document.getElementById('carbohydrates' + i).innerHTML = '碳水：' + data.carbohydrates;
+        document.getElementById('calories0').innerHTML = '熱量：' + data.calories;
+        document.getElementById('proteins0').innerHTML = '蛋白質：' + data.protein;
+        document.getElementById('fat0').innerHTML = '脂肪：' + data.fat;
+        document.getElementById('carbohydrates0').innerHTML = '碳水：' + data.carbohydrates;
         document.getElementById('total_calories').innerHTML = data.calories;
         document.getElementById('total_proteins').innerHTML = data.protein;
         document.getElementById('total_fat').innerHTML = data.fat;
@@ -53,7 +67,9 @@ $('#btn-add-row').click(() => {
             eleId +
             '"></div></div>'
     );
-    // const socket = io();
+
+    loadingredients();
+
     $(function () {
         let i = eleId;
         const selectIngredientEle = document.querySelector('#ingredient' + i);
@@ -86,6 +102,7 @@ $('#btn-add-row').click(() => {
     eleId++;
 });
 
+//Step_pic & Step_description
 $('#btn-add-step').click(() => {
     $('.element-wrapper1').append(
         '<div id="div' +
@@ -97,6 +114,7 @@ $('#btn-add-step').click(() => {
     stepId++;
 });
 
+//form 送出的時候
 $('#click').on('click', function () {
     let title = document.getElementById('title').value;
     let sum_calories = document.getElementById('total_calories').innerHTML;
@@ -108,21 +126,3 @@ $('#click').on('click', function () {
 
     socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
 });
-
-loadingredients = async () => {
-    const res = await fetch('../data/ingredients.json');
-    const ingredients = await res.json();
-    let count = 0;
-    for (let i = 0; i < ingredients.length; i++) {
-        let ingredient = ingredients[i];
-        //$("#matched_list").append('<option value="'ingredient.name'"></option>');
-        $(`#matched_list${count}`).append(`<option value=${ingredient.name}></option>`);
-        console.log(count);
-    }
-    count++;
-    console.log('count =' + count);
-};
-
-window.onload = function () {
-    loadingredients();
-};
