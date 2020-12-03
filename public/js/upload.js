@@ -1,13 +1,47 @@
+const socket = io();
+
 var eleId = 1;
 var stepId = 1;
 
+//畫面上原本的食材克數欄位
+$(document).ready(function () {
+    let i = 0;
+    const selectIngredientEle = document.querySelector('#ingredient' + i);
+    const selectGramsEle = document.querySelector('#grams' + i);
+    [selectIngredientEle, selectGramsEle].forEach((ele) => {
+        ele.addEventListener('change', (event) => {
+            set = {
+                ingredient: selectIngredientEle.value,
+                gram: selectGramsEle.value,
+            };
+            socket.emit('query_nutrition', set);
+            return false;
+        });
+    });
+    socket.on('nutrition_from_db', function (data) {
+        document.getElementById('calories' + i).innerHTML = '熱量：' + data.calories;
+        document.getElementById('proteins' + i).innerHTML = '蛋白質：' + data.protein;
+        document.getElementById('fat' + i).innerHTML = '脂肪：' + data.fat;
+        document.getElementById('carbohydrates' + i).innerHTML = '碳水：' + data.carbohydrates;
+        document.getElementById('total_calories').innerHTML = data.calories;
+        document.getElementById('total_proteins').innerHTML = data.protein;
+        document.getElementById('total_fat').innerHTML = data.fat;
+        document.getElementById('total_carbohydrates').innerHTML = data.carbohydrates;
+    });
+});
+
+//append新的食材克數格子
 $('#btn-add-row').click(() => {
     $('.element-wrapper').append(
         '<div class="row" id="div' +
             eleId +
             '"><input type="text" name="ingredient" id="ingredient' +
             eleId +
-            '" placeholder="食材" /><input type="text" name="grams" id="grams' +
+            '" placeholder="食材" list="matched_list' +
+            eleId +
+            '"  /><datalist id="matched_list' +
+            eleId +
+            '"></datalist><input type="text" name="grams" id="grams' +
             eleId +
             '" placeholder="克數" /><button type="button" class="btn-remove-row">-</button><br>熱量：<div name="calories" id="calories' +
             eleId +
@@ -19,7 +53,7 @@ $('#btn-add-row').click(() => {
             eleId +
             '"></div></div>'
     );
-    const socket = io();
+    // const socket = io();
     $(function () {
         let i = eleId;
         const selectIngredientEle = document.querySelector('#ingredient' + i);
@@ -75,31 +109,20 @@ $('#click').on('click', function () {
     socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
 });
 
-//search ingredients.json and filter
-const ingredient = document.getElementById('ingredient0');
-const match = document.getElementById('matched_list');
-const searchIngredient = async (searchText) => {
+loadingredients = async () => {
     const res = await fetch('../data/ingredients.json');
     const ingredients = await res.json();
-
-    //get matches to current text input
-    let matches = ingredients.filter((ingredient) => {
-        const regex = new RegExp(`${searchText}`, 'gi');
-        return ingredient.name.match(regex);
-    });
-    if (searchText.length === 0) {
-        matches = [];
-        matched_list.innerHTML = '';
+    let count = 0;
+    for (let i = 0; i < ingredients.length; i++) {
+        let ingredient = ingredients[i];
+        //$("#matched_list").append('<option value="'ingredient.name'"></option>');
+        $(`#matched_list${count}`).append(`<option value=${ingredient.name}></option>`);
+        console.log(count);
     }
-    outputHTML(matches);
+    count++;
+    console.log('count =' + count);
 };
 
-const outputHTML = (matches) => {
-    if (matches.length > 0) {
-        const html = matches.map((match) => `<div class="card"><h4>${match.name}</span></h4></div>)`).join('');
-
-        matched_list.innerHTML = html;
-    }
+window.onload = function () {
+    loadingredients();
 };
-
-ingredient.addEventListener('input', () => searchIngredient(ingredient.value));

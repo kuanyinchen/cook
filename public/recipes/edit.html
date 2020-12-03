@@ -7,37 +7,7 @@
         <!-- <link rel="stylesheet" href="../css/bootstrap.min.css" /> -->
         <title>食譜編輯 - Just Make</title>
     </head>
-
     <script src="/socket.io/socket.io.js"></script>
-
-    <script>
-        const socket = io();
-        $(document).ready(function () {
-            let i = 0;
-            const selectIngredientEle = document.querySelector('#ingredient' + i);
-            const selectGramsEle = document.querySelector('#grams' + i);
-            [selectIngredientEle, selectGramsEle].forEach((ele) => {
-                ele.addEventListener('change', (event) => {
-                    set = {
-                        ingredient: selectIngredientEle.value,
-                        gram: selectGramsEle.value,
-                    };
-                    socket.emit('query_nutrition', set);
-                    return false;
-                });
-            });
-            socket.on('nutrition_from_db', function (data) {
-                document.getElementById('calories' + i).innerHTML = '熱量：' + data.calories;
-                document.getElementById('proteins' + i).innerHTML = '蛋白質：' + data.protein;
-                document.getElementById('fat' + i).innerHTML = '脂肪：' + data.fat;
-                document.getElementById('carbohydrates' + i).innerHTML = '碳水：' + data.carbohydrates;
-                document.getElementById('total_calories').innerHTML = data.calories;
-                document.getElementById('total_proteins').innerHTML = data.protein;
-                document.getElementById('total_fat').innerHTML = data.fat;
-                document.getElementById('total_carbohydrates').innerHTML = data.carbohydrates;
-            });
-        });
-    </script>
     <body>
         <h3 class="text-center mb-3"><i class="fas fa-utensils"></i>食譜上傳</h3>
         <form id="form" action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
@@ -67,8 +37,8 @@
             <span>食材：</span>
             <div class="element-wrapper">
                 <div class="row" id="div0">
-                    <input type="text" name="ingredient" id="ingredient0" placeholder="食材" value="" />
-                    <div id="matched_list"></div>
+                    <input type="text" name="ingredient" id="ingredient0" placeholder="食材" list="matched_list0" />
+                    <datalist id="matched_list0"></datalist>
                     <input type="text" name="grams" id="grams0" placeholder="克數" value="" />
                     <button type="button" class="btn-remove-row">-</button>
                     <div name="calories" id="calories0">熱量：</div>
