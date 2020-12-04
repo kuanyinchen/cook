@@ -1,5 +1,3 @@
-const socket = io();
-
 var eleId = 1;
 var stepId = 1;
 
@@ -20,6 +18,7 @@ window.onload = function () {
 //畫面上原本的食材克數欄位
 $(document).ready(function () {
     //let i = 0;
+    const socket = io();
     const selectIngredientEle = document.querySelector('#ingredient0');
     const selectGramsEle = document.querySelector('#grams0');
     [selectIngredientEle, selectGramsEle].forEach((ele) => {
@@ -72,6 +71,7 @@ $('#btn-add-row').click(() => {
 
     $(function () {
         let i = eleId;
+        const socket = io();
         const selectIngredientEle = document.querySelector('#ingredient' + i);
         const selectGramsEle = document.querySelector('#grams' + i);
         [selectIngredientEle, selectGramsEle].forEach((ele) => {
