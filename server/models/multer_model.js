@@ -25,4 +25,22 @@ const uploadS3 = multer({
     }),
 });
 
-module.exports = { uploadS3 };
+const uploadVideotoS3 = multer({
+    storage: multerS3({
+        s3: s3,
+        acl: 'public-read',
+        bucket: 'preludewebsite',
+        contentType: multerS3.AUTO_CONTENT_TYPE,
+        metadata: (req, file, cb) => {
+            cb(null, { fieldName: file.fieldname });
+        },
+        key: (req, file, cb) => {
+            cb(null, 'RecipeVideo/' + Date.now() + '-' + file.originalname);
+        },
+    }),
+});
+
+module.exports = {
+    uploadS3,
+    uploadVideotoS3,
+};

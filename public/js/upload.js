@@ -21,8 +21,9 @@ $(document).ready(function () {
     const socket = io();
     const selectIngredientEle = document.querySelector('#ingredient0');
     const selectGramsEle = document.querySelector('#grams0');
-    [selectIngredientEle, selectGramsEle].forEach((ele) => {
-        ele.addEventListener('change', (event) => {
+
+    selectIngredientEle.addEventListener('change', (event) => {
+        selectGramsEle.addEventListener('change', (event) => {
             set = {
                 ingredient: selectIngredientEle.value,
                 gram: selectGramsEle.value,
@@ -31,11 +32,13 @@ $(document).ready(function () {
             return false;
         });
     });
+
     socket.on('nutrition_from_db', function (data) {
         document.getElementById('calories0').innerHTML = '熱量：' + data.calories;
         document.getElementById('proteins0').innerHTML = '蛋白質：' + data.protein;
         document.getElementById('fat0').innerHTML = '脂肪：' + data.fat;
         document.getElementById('carbohydrates0').innerHTML = '碳水：' + data.carbohydrates;
+
         document.getElementById('total_calories').innerHTML = data.calories;
         document.getElementById('total_proteins').innerHTML = data.protein;
         document.getElementById('total_fat').innerHTML = data.fat;
@@ -74,8 +77,9 @@ $('#btn-add-row').click(() => {
         const socket = io();
         const selectIngredientEle = document.querySelector('#ingredient' + i);
         const selectGramsEle = document.querySelector('#grams' + i);
-        [selectIngredientEle, selectGramsEle].forEach((ele) => {
-            ele.addEventListener('change', (event) => {
+
+        selectIngredientEle.addEventListener('change', (event) => {
+            selectGramsEle.addEventListener('change', (event) => {
                 set = {
                     ingredient: selectIngredientEle.value,
                     gram: selectGramsEle.value,
@@ -84,6 +88,7 @@ $('#btn-add-row').click(() => {
                 return false;
             });
         });
+
         socket.on('nutrition_from_db', function (data) {
             document.getElementById('calories' + i).innerHTML = data.calories;
             document.getElementById('proteins' + i).innerHTML = data.protein;

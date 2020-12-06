@@ -1,6 +1,13 @@
 const router = require('express').Router();
 const fs = require('fs');
+const { uploadVideotoS3 } = require('../models/multer_model');
+const { createVideo } = require('../controllers/videoUpload_controller');
 
+const videoUpload = uploadVideotoS3.single('video');
+
+router.route('/upload/video').post(videoUpload, createVideo);
+
+//get video的畫面
 router.get('/video', (req, res) => {
     const range = req.headers.range;
     if (!range) {

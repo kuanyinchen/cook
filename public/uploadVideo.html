@@ -5,11 +5,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale =1.0" />
     <title>食譜編輯 - Just Make</title>
+    <style>
+        body {
+            margin: 50px auto;
+            max-width: 650px;
+            line-height: 1.6;
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #444;
+            padding: 0 10px;
+        }
+        h3 {
+            line-height: 1.2;
+        }
+    </style>
 </head>
 <body>
     <h3>影片上傳</h3>
-    <form id="form" action="/api/1.0/upload/video method="POST" enctype="multipart/form-data">
-    <span>食譜影片：</span>
-    <input type="file" class="form-control-file" name="cover" multiple />
+    <form id="form" action="/api/1.0/upload/video" method="POST" enctype="multipart/form-data">
+        <span>食譜名稱：</span>
+        <input type="text" class="form-control-file" name="title" />
+        <br />
+        <span>說明：</span>
+        <textarea class="form-control-file" name="description"></textarea>
+        <br />
+        <span>食譜影片：</span>
+        <input type="file" class="form-control-file" name="video" multiple />
+        <br />
+        <button type="submit" id="click">送出影片</button>
+    </form>
 </body>
 <html></html>
