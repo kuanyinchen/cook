@@ -46,9 +46,9 @@ $(document).ready(function () {
     });
 });
 
-//append新的食材克數格子
+//append新的食材克數格子 //原本的
 $('#btn-add-row').click(() => {
-    $('.element-wrapper').append(
+    $('.rowADD').append(
         '<div class="row" id="div' +
             eleId +
             '"><input type="text" name="ingredient" id="ingredient' +
