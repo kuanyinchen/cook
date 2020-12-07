@@ -34,15 +34,15 @@ $(document).ready(function () {
     });
 
     socket.on('nutrition_from_db', function (data) {
-        document.getElementById('calories0').innerHTML = '熱量：' + data.calories;
-        document.getElementById('proteins0').innerHTML = '蛋白質：' + data.protein;
-        document.getElementById('fat0').innerHTML = '脂肪：' + data.fat;
-        document.getElementById('carbohydrates0').innerHTML = '碳水：' + data.carbohydrates;
+        document.getElementById('calories0').innerHTML = data.calories;
+        document.getElementById('proteins0').innerHTML = data.protein;
+        document.getElementById('fat0').innerHTML = data.fat;
+        document.getElementById('carbohydrates0').innerHTML = data.carbohydrates;
 
-        document.getElementById('total_calories').innerHTML = data.calories;
-        document.getElementById('total_proteins').innerHTML = data.protein;
-        document.getElementById('total_fat').innerHTML = data.fat;
-        document.getElementById('total_carbohydrates').innerHTML = data.carbohydrates;
+        // document.getElementById('total_calories').innerHTML = data.calories;
+        // document.getElementById('total_proteins').innerHTML = data.protein;
+        // document.getElementById('total_fat').innerHTML = data.fat;
+        // document.getElementById('total_carbohydrates').innerHTML = data.carbohydrates;
     });
 });
 
@@ -61,13 +61,13 @@ $('#btn-add-row').click(() => {
             eleId +
             '" placeholder="克數" /><button type="button" class="btn-remove-row">-</button><br>熱量：<div name="calories" id="calories' +
             eleId +
-            '"></div>蛋白質：<div name="proteins" id="proteins' +
+            '" class="calories"></div>蛋白質：<div name="proteins" id="proteins' +
             eleId +
-            '"></div>碳水：<div name="carbohydrates" id="carbohydrates' +
+            '" class="protein"></div>碳水：<div name="carbohydrates" id="carbohydrates' +
             eleId +
-            '"></div>脂肪:<div name="fat" id="fat' +
+            '" class="carbohydrates"></div>脂肪:<div name="fat" id="fat' +
             eleId +
-            '"></div></div>'
+            '" class="fat"></div></div>'
     );
 
     loadingredients();
@@ -94,17 +94,52 @@ $('#btn-add-row').click(() => {
             document.getElementById('proteins' + i).innerHTML = data.protein;
             document.getElementById('fat' + i).innerHTML = data.fat;
             document.getElementById('carbohydrates' + i).innerHTML = data.carbohydrates;
-            document.getElementById('total_calories').innerHTML =
-                parseInt(document.getElementById('total_calories').innerHTML) + data.calories;
-            document.getElementById('total_proteins').innerHTML =
-                parseInt(document.getElementById('total_proteins').innerHTML) + data.protein;
-            document.getElementById('total_carbohydrates').innerHTML =
-                parseInt(document.getElementById('total_carbohydrates').innerHTML) + data.carbohydrates;
-            document.getElementById('total_fat').innerHTML =
-                parseInt(document.getElementById('total_fat').innerHTML) + data.fat;
+
+            // document.getElementById('total_calories').innerHTML =
+            //     parseInt(document.getElementById('total_calories').innerHTML) + data.calories;
+            // document.getElementById('total_proteins').innerHTML =
+            //     parseInt(document.getElementById('total_proteins').innerHTML) + data.protein;
+            // document.getElementById('total_carbohydrates').innerHTML =
+            //     parseInt(document.getElementById('total_carbohydrates').innerHTML) + data.carbohydrates;
+            // document.getElementById('total_fat').innerHTML =
+            //     parseInt(document.getElementById('total_fat').innerHTML) + data.fat;
         });
     });
     eleId++;
+});
+
+$('#btn-sum').click(() => {
+    const cal = document.getElementsByClassName('calories');
+    const pro = document.getElementsByClassName('protein');
+    const carb = document.getElementsByClassName('carbohydrates');
+    const fat = document.getElementsByClassName('fat');
+    const total_cal = document.getElementById('total_calories');
+    const total_pro = document.getElementById('total_proteins');
+    const total_carbo = document.getElementById('total_carbohydrates');
+    const total_f = document.getElementById('total_fats');
+    calArray = [];
+    for (let calories of cal) {
+        calArray.push(parseInt(calories.innerHTML));
+    }
+    calArray.reduce((acc, curr) => (total_cal.innerHTML = acc + curr));
+
+    proArray = [];
+    for (let protein of pro) {
+        proArray.push(parseInt(protein.innerHTML));
+    }
+    proArray.reduce((acc, curr) => (total_pro.innerHTML = acc + curr));
+
+    carbArray = [];
+    for (let carbo of carb) {
+        carbArray.push(parseInt(carbo.innerHTML));
+    }
+    carbArray.reduce((acc, curr) => (total_carbo.innerHTML = acc + curr));
+
+    fatArray = [];
+    for (let f of carb) {
+        fatArray.push(parseInt(f.innerHTML));
+    }
+    fatArray.reduce((acc, curr) => (total_f.innerHTML = acc + curr));
 });
 
 //Step_pic & Step_description
