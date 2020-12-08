@@ -566,14 +566,14 @@ button {
 }
 
 .page-title {
-    background: #5672f9;
+    background: #351e29;
     padding: 35px 0;
 }
 
 .page-title h3 {
     color: #fff;
     font-size: 42px;
-    letter-spacing: 0;
+    letter-spacing: 20px;
     line-height: 1;
     margin-bottom: 0;
 }

@@ -5,7 +5,7 @@ const { createRecipe } = require('../controllers/recipe_controller');
 
 const cpUpload = uploadS3.fields([
     { name: 'cover', maxCount: 1 },
-    { name: 'step_p', maxCount: 8 },
+    //{ name: 'step_p', maxCount: 8 },
 ]);
 
 router.route('/upload/recipe').post(cpUpload, createRecipe);
