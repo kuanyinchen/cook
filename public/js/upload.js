@@ -1,5 +1,6 @@
 var eleId = 1;
 var stepId = 1;
+var step = 2;
 
 loadingredients = async () => {
     const res = await fetch('../data/ingredients.json');
@@ -48,24 +49,25 @@ $(document).ready(function () {
 
 //append新的食材克數格子 //原本的
 $('#btn-add-row').click(() => {
-    $('.rowADD').append(
-        '<div class="row" id="div' +
+    $('#addRowLeft').append(
+        '<div class="123"><h6 class="font-weight-bold pt-4 pb-1">食材:</h6><input type="text" name="ingredient" id="ingredient' +
             eleId +
-            '"><input type="text" name="ingredient" id="ingredient' +
+            '" placeholder="食材名稱" class="border w-100 p-2" list="matched_list' +
             eleId +
-            '" placeholder="食材" list="matched_list' +
+            '"/><datalist id="matched_list' +
             eleId +
-            '"  /><datalist id="matched_list' +
-            eleId +
-            '"></datalist><input type="text" name="grams" id="grams' +
-            eleId +
-            '" placeholder="克數" /><button type="button" class="btn-remove-row">-</button><br>熱量：<div name="calories" id="calories' +
+            '"></datalist><div class="col-lg-6"></div>熱量：<div name="calories" id="calories' +
             eleId +
             '" class="calories"></div>蛋白質：<div name="proteins" id="proteins' +
             eleId +
-            '" class="protein"></div>碳水：<div name="carbohydrates" id="carbohydrates' +
+            '" class="protein"></div></div>'
+    );
+    $('#addRowRight').append(
+        '<div class="123"><h6 class="font-weight-bold pt-4 pb-1">食材重量:</h6><input type="text" name="grams" id="grams' +
             eleId +
-            '" class="carbohydrates"></div>脂肪:<div name="fat" id="fat' +
+            '" placeholder="食材克數" class="border w-100 p-2"/><div class="col-lg-6"></div>碳水：<div name="carbohydrates" id="carbohydrates' +
+            eleId +
+            '" class="carbohydrates"></div>脂肪：<div name="fat" id="fat' +
             eleId +
             '" class="fat"></div></div>'
     );
@@ -73,7 +75,8 @@ $('#btn-add-row').click(() => {
     loadingredients();
 
     $(function () {
-        let i = eleId;
+        // console.log(eleId);
+        let i = eleId - 1;
         const socket = io();
         const selectIngredientEle = document.querySelector('#ingredient' + i);
         const selectGramsEle = document.querySelector('#grams' + i);
@@ -109,6 +112,7 @@ $('#btn-add-row').click(() => {
 });
 
 $('#btn-sum').click(() => {
+    // console.log('123');
     const cal = document.getElementsByClassName('calories');
     const pro = document.getElementsByClassName('protein');
     const carb = document.getElementsByClassName('carbohydrates');
@@ -120,6 +124,7 @@ $('#btn-sum').click(() => {
     calArray = [];
     for (let calories of cal) {
         calArray.push(parseInt(calories.innerHTML));
+        console.log(calories.innerHTML);
     }
     calArray.reduce((acc, curr) => (total_cal.innerHTML = acc + curr));
 
@@ -136,21 +141,25 @@ $('#btn-sum').click(() => {
     carbArray.reduce((acc, curr) => (total_carbo.innerHTML = acc + curr));
 
     fatArray = [];
-    for (let f of carb) {
+    for (let f of fat) {
         fatArray.push(parseInt(f.innerHTML));
     }
     fatArray.reduce((acc, curr) => (total_f.innerHTML = acc + curr));
 });
 
-//Step_pic & Step_description
+//Step_pic & Step_description;
 $('#btn-add-step').click(() => {
-    $('.element-wrapper1').append(
-        '<div id="div' +
+    $('#stepLeft').append(
+        '<span class="mb-3 d-block">' +
+            step +
+            '.</span><textarea name="step_d" id="step_d' +
             stepId +
-            '"><input type="file" class="form-control-file" name="step_p" multiple /><textarea name="step_d" id ="step_d' +
-            stepId +
-            '"placeholder="說明" /></textarea><button type="button" class="btn-remove-step">-</button></div>'
+            '" class="border p-3 w-100" rows="7" placeholder="Write the steps about your recipe"></textarea>'
     );
+    $('#stepRight').append(
+        '<span class="mb-3 d-block">照片</span><div class="choose-file text-center my-2.5 py-4 "><label for="file-upload"><span class="d-block font-weight-bold text-dark">Drop files anywhere to upload</span><span class="d-block">or</span><span class="d-block btn bg-primary text-white my-3 select-files">Select files</span><span class="d-block">Maximum upload file size: 500 KB</span><input type="file" class="form-control-file d-none" id="file-upload" name="step_p" multiple/></label></div>'
+    );
+    step++;
     stepId++;
 });
 
@@ -163,6 +172,5 @@ $('#click').on('click', function () {
     let sum_fat = document.getElementById('total_fat').innerHTML;
     let category = document.getElementById('category').value;
     let set = [sum_calories, sum_proteins, sum_carbohydrates, sum_fat, title, category]; //[1,2,3,4]
-
     socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
 });
