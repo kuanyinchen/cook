@@ -172,12 +172,14 @@ $('#btn-add-step').click(() => {
 
 //form 送出的時候
 $('#click').on('click', function () {
+    const socket = io();
     let title = document.getElementById('title').value;
     let sum_calories = document.getElementById('total_calories').innerHTML;
     let sum_proteins = document.getElementById('total_proteins').innerHTML;
     let sum_carbohydrates = document.getElementById('total_carbohydrates').innerHTML;
-    let sum_fat = document.getElementById('total_fat').innerHTML;
-    let category = document.getElementById('category').value;
+    let sum_fat = document.getElementById('total_fats').innerHTML;
+    let category = document.getElementById('inputGroupSelect').value;
     let set = [sum_calories, sum_proteins, sum_carbohydrates, sum_fat, title, category]; //[1,2,3,4]
+    console.log(set);
     socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
 });
