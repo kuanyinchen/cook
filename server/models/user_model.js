@@ -5,7 +5,6 @@ const { query, transaction, commit, rollback } = require('./mysqlcon');
 const userRegist = async (r_name, r_email, r_password) => {
     try {
         await transaction();
-        console.log(r_email);
         const email = await query('SELECT email FROM member WHERE email = ?', [r_email]);
         if (email.length > 0) {
             await commit();
@@ -32,6 +31,31 @@ const userRegist = async (r_name, r_email, r_password) => {
     }
 };
 
+const userLogin = async (mail, password) => {
+    try {
+        await transaction();
+        const userCheck = await query('SELECT * FROM member WHERE email = ?', [mail]);
+        const user = userCheck[0];
+        console.log(user);
+
+        const hash = crypto.createHash('sha256');
+        hash.update(password);
+        hashPassword = hash.copy().digest('hex');
+
+        if (user.password !== hashPassword) {
+            await commit();
+            return { error: 'Password is wrong' };
+        }
+        await commit();
+
+        return { user };
+    } catch (error) {
+        await rollback();
+        return { error };
+    }
+};
+
 module.exports = {
     userRegist,
+    userLogin,
 };
