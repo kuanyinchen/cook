@@ -2,11 +2,10 @@
 <html lang="en">
     <head>
         <!-- SITE TITTLE -->
-        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Just Make -食譜編輯</title>
+        <title>Just Make</title>
 
         <!-- FAVICON -->
         <link href="img/favicon.png" rel="shortcut icon" />
@@ -33,7 +32,7 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <script src="/socket.io/socket.io.js"></script>
+
     <body class="body-wrapper">
         <section>
             <div class="container">
@@ -57,15 +56,15 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto main-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home</a>
+                                        <a class="nav-link" href="index.html">Just Make</a>
                                     </li>
-                                    <li class="nav-item dropdown dropdown-slide">
+                                    <!-- <li class="nav-item dropdown dropdown-slide">
                                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""
                                             >Dashboard<span><i class="fa fa-angle-down"></i></span>
-                                        </a>
+                                        </a> -->
 
-                                        <!-- Dropdown list -->
-                                        <div class="dropdown-menu">
+                                    <!-- Dropdown list -->
+                                    <!-- <div class="dropdown-menu">
                                             <a class="dropdown-item" href="dashboard.html">Dashboard</a>
                                             <a class="dropdown-item" href="dashboard-my-ads.html">Dashboard My Ads</a>
                                             <a class="dropdown-item" href="dashboard-favourite-ads.html"
@@ -78,10 +77,24 @@
                                                 >Dashboard Pending Ads</a
                                             >
                                         </div>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item active">
-										<a class="nav-link" href="video.html">Video</a>
-									</li>
+                                        <a class="nav-link" href="video.html">Cooktube</a>
+                                    </li>
+
+                                    <!-- Dropdown list -->
+                                    <!-- <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="about-us.html">About Us</a>
+                                            <a class="dropdown-item" href="contact-us.html">Contact Us</a>
+                                            <a class="dropdown-item" href="user-profile.html">User Profile</a>
+                                            <a class="dropdown-item" href="404.html">404 Page</a>
+                                            <a class="dropdown-item" href="package.html">Package</a>
+                                            <a class="dropdown-item" href="single.html">Single Page</a>
+                                            <a class="dropdown-item" href="store.html">Store Single</a>
+                                            <a class="dropdown-item" href="single-blog.html">Single Post</a>
+                                            <a class="dropdown-item" href="blog.html">Blog</a>
+                                        </div>
+                                    </li> -->
                                     <li class="nav-item dropdown dropdown-slide">
                                         <a
                                             class="nav-link dropdown-toggle"
@@ -94,7 +107,7 @@
                                         </a>
                                         <!-- Dropdown list -->
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="category.html">找蛋白</a>
+                                            <a class="dropdown-item" href="category.html">找蛋白質</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -115,213 +128,43 @@
             </div>
         </section>
 
-        <section class="ad-post bg-gray py-5">
+        <section class="login py-5 border-top-1">
             <div class="container">
-                <form id="form" action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
-                    <!-- Post Your ad start -->
-                    <fieldset class="border border-gary p-4 mb-5">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h3>Post Your Recipe</h3>
-                            </div>
-                            <div class="col-lg-6">
-                                <h6 class="font-weight-bold pt-4 pb-1">食譜名稱:</h6>
-                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="title" id="title" />
-                                <h6 class="font-weight-bold pt-4 pb-1">份量（人份）:</h6>
-                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="quantity" />
-                                <h6 class="font-weight-bold pt-4 pb-1">食譜說明:</h6>
-                                <textarea
-                                    name="description"
-                                    id="description"
-                                    class="border p-3 w-100"
-                                    rows="7"
-                                    placeholder="Write details about your recipe"
-                                ></textarea>
-                            </div>
-                            <div class="col-lg-6">
-                                <h6 class="font-weight-bold pt-4 pb-1">食譜分類:</h6>
-                                <select name="category" id="inputGroupSelect" class="border p-2 w-100">
-                                    <option value="0">請選擇食譜分類</option>
-                                    <option value="點心烘焙">點心烘焙</option>
-                                    <option value="健身">健身</option>
-                                    <option value="寵物鮮食">寵物鮮食</option>
-                                </select>
-                                <h6 class="font-weight-bold pt-4 pb-1">烹調時間（分鐘）:</h6>
-                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="time" />
-                                <!--  上傳照片 -->
-                                <div class="choose-file text-center my-4 py-4 rounded">
-                                    <label for="file-upload">
-                                        <span class="d-block font-weight-bold text-dark"
-                                            >Drop files anywhere to upload</span
-                                        >
-                                        <span class="d-block">or</span>
-                                        <span class="d-block btn bg-primary text-white my-3 select-files"
-                                            >Select files</span
-                                        >
-                                        <span class="d-block">Maximum upload file size: 500 KB</span>
-                                        <input
-                                            type="file"
-                                            class="form-control-file d-none"
-                                            id="file-upload"
-                                            name="cover" multiple
-                                        />
-                                    </label>
-                                </div>
-                            </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-8 align-item-center">
+                        <div class="border border">
+                            <h3 class="bg-gray p-4">Register Now</h3>
+                            <form action="#">
+                                <fieldset class="p-4">
+                                    <input
+                                        type="text"
+                                        name="r_name"
+                                        placeholder="Name*"
+                                        class="border p-3 w-100 my-2"
+                                    />
+                                    <input
+                                        type="email"
+                                        name="r_email"
+                                        placeholder="Email*"
+                                        class="border p-3 w-100 my-2"
+                                    />
+                                    <input
+                                        type="password"
+                                        name="r_password"
+                                        placeholder="Password*"
+                                        class="border p-3 w-100 my-2"
+                                    />
+                                    <input
+                                        type="submit"
+                                        value="Register Now"
+                                        id="Register"
+                                        class="btn btn-primary d-block mt-2"
+                                    />
+                                </fieldset>
+                            </form>
                         </div>
-                    </fieldset>
-                    <!-- Post Your ad Recipe -->
-
-                    <!-- 食材 -->
-                    <fieldset class="border p-4 my-5 seller-information bg-gray">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h3>食譜食材</h3>
-                                <span class="float-right"
-                                    ><a class="text-right font-weight-normal text-success"
-                                        ><button type="button" id="btn-add-row">+</button></a
-                                    ></span
-                                >
-                            </div>
-                            <!-- 第一組左邊 -->
-
-                            <div class="col-lg-6" id="addRowLeft">
-                                <h6 class="font-weight-bold pt-4 pb-1">食材:</h6>
-                                <input
-                                    type="text"
-                                    name="ingredient"
-                                    id="ingredient0"
-                                    placeholder="食材名稱"
-                                    class="border w-100 p-2"
-                                    list="matched_list0"
-                                />
-                                <datalist id="matched_list0"></datalist>
-                                <div class="col-lg-6"></div>
-                                熱量：
-                                <div name="calories" id="calories0" class="calories"></div>
-                                蛋白質：
-                                <div name="proteins" id="proteins0" class="protein"></div>
-                            </div>
-                            <!-- 第一組右邊 -->
-                            <div class="col-lg-6" id="addRowRight">
-                                <h6 class="font-weight-bold pt-4 pb-1">食材重量:</h6>
-                                <input
-                                    type="text"
-                                    name="grams"
-                                    id="grams0"
-                                    placeholder="食材克數"
-                                    class="border w-100 p-2"
-                                />
-                                <div class="col-lg-6"></div>
-                                碳水：
-                                <div name="carbohydrates" id="carbohydrates0" class="carbohydrates"></div>
-                                脂肪：
-                                <div name="fat" id="fat0" class="fat"></div>
-                            </div>
-
-                        
-                    </fieldset>
-                    <!-- 食材 end-->
-
-                    <!-- ad-feature start -->
-                    <fieldset class="border bg-white p-4 my-5 ad-feature bg-gray">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h3 class="pb-3">
-                                    步驟說明
-                                    <span class="float-right"
-                                        ><a class="text-right font-weight-normal text-success"><button type="button" id="btn-add-step">+</button></a
-                                        ></span
-                                    >
-                                </h3>
-                            </div>
-                            <div class="col-lg-6 my-3" id="stepLeft">
-                                <span class="mb-3 d-block">1.</span>
-                                <textarea
-                                    name="step_d"
-                                    id="step_d0"
-                                    class="border p-3 w-100"
-                                    rows="7"
-                                    placeholder="Write the steps about your recipe"
-                                ></textarea>
-                            </div>
-                            <div class="col-lg-6 my-3" id="stepRight">
-                                <!-- <span class="mb-3 d-block">照片</span> -->
-                                <span class="mb-3 d-block">1.</span>
-                                <textarea
-                                    name="step_d"
-                                    id="step_d0"
-                                    class="border p-3 w-100"
-                                    rows="7"
-                                    placeholder="Write the steps about your recipe"
-                                ></textarea>
-                                <!-- <div class="choose-file text-center my-2.5 py-4 ">
-                                    <label for="file-upload">
-                                        <span class="d-block font-weight-bold text-dark"
-                                            >Drop files anywhere to upload</span
-                                        >
-                                        <span class="d-block">or</span>
-                                        <span class="d-block btn bg-primary text-white my-3 select-files"
-                                            >Select files</span
-                                        >
-                                        <span class="d-block">Maximum upload file size: 500 KB</span>
-                                        <input
-                                            type="file"
-                                            class="form-control-file d-none"
-                                            id="file-upload"
-                                            name="step_p" multiple
-                                        />
-                                    </label>
-                                </div> -->
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    
-
-                    <!-- 計算總營養素 -->
-                    <fieldset class="border bg-white p-4 my-5 ad-feature bg-gray">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h3 class="pb-3">
-                                    食譜總營養素
-                                    <span class="float-right"
-                                        ><a class="text-right font-weight-normal text-success"><button type="button" id="btn-sum">一鍵計算</button></a
-                                        ></span
-                                    >
-                                </h3>
-                            </div>
-                            <div class="col-lg-6 my-3">
-                                <span class="mb-3 d-block">總熱量：<div name="total_calories" id="total_calories"></div></span>
-                                
-                                <span class="mb-3 d-block">總碳水化合物：<div name="total_carbohydrates" id="total_carbohydrates"></div></span>
-                                
-                            </div>
-                            <div class="col-lg-6 my-3">
-                                <span class="mb-3 d-block">總蛋白質：<div name="total_proteins" id="total_proteins"></div></span>
-                                
-                                <span class="mb-3 d-block">總脂肪：<div name="total_fats" id="total_fats"></div></span>
-                                
-                            </div>
-                        </div>
-                    </fieldset>
-                    <!-- ad-feature start -->
-
-                    <!-- submit button -->
-                    <!-- <div class="checkbox d-inline-flex">
-                        <input type="checkbox" id="terms-&-condition" class="mt-1" />
-                        <label for="terms-&-condition" class="ml-2"
-                            >By click you must agree with our
-                            <span>
-                                <a class="text-success" href="terms-condition.html"
-                                    >Terms & Condition and Posting Rules.</a
-                                ></span
-                            >
-                        </label>
-                    </div> -->
-                    <!-- <button type="submit" class="btn btn-primary d-block mt-2" id="click">Post Your Recipe</button> -->
-                    <input type="submit" value="Post Your Recipe" id="click" class="btn btn-primary d-block mt-2"/>
-                </form>
+                    </div>
+                </div>
             </div>
         </section>
         <!--============================
@@ -462,6 +305,6 @@
         <!-- google map -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
         <script src="plugins/google-map/gmap.js"></script>
-        <script src="js/upload.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>

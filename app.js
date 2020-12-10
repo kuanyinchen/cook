@@ -41,7 +41,7 @@ app.use('/api/' + API_VERSION, [
     require('./server/routes/upload_route'),
     require('./server/routes/recipes_route'),
     require('./server/routes/video_route'),
-    require('./server/routes/login_route.js'),
+    require('./server/routes/user_route.js'),
 ]);
 
 // Page not found
