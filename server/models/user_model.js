@@ -36,7 +36,6 @@ const userLogin = async (mail, password) => {
         await transaction();
         const userCheck = await query('SELECT * FROM member WHERE email = ?', [mail]);
         const user = userCheck[0];
-        console.log(user);
 
         const hash = crypto.createHash('sha256');
         hash.update(password);

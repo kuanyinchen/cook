@@ -225,3 +225,13 @@
         $('.value').text('$' + slideEvt.value[0] + ' - ' + '$' + slideEvt.value[1]);
     });
 })(jQuery);
+
+$('#addRecipe').on('click', () => {
+    let jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+        window.location.href = '/ad-recipe.html';
+    } else {
+        console.log('no token');
+        window.location.href = '/login.html';
+    }
+});

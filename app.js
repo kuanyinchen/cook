@@ -26,6 +26,8 @@ const $ = require('jquery')(window);
 
 const path = require('path');
 
+const axios = require('axios');
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));

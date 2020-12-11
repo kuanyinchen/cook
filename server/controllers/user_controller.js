@@ -43,6 +43,7 @@ const userRegist = async (req, res) => {
     res.status(200).json({
         jwtToken: giveToken(),
     });
+    // res.status(200).json('ok');
 };
 
 const userLogin = async (req, res) => {
@@ -60,7 +61,6 @@ const userLogin = async (req, res) => {
     }
 
     const { user } = result;
-    console.log({ user });
 
     if (!user) {
         res.status(500).send({ error: 'Database Query Error' });
