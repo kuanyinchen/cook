@@ -34,6 +34,7 @@
         <![endif]-->
     </head>
     <script src="/socket.io/socket.io.js"></script>
+    
     <body class="body-wrapper">
         <section>
             <div class="container">
@@ -56,46 +57,23 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto main-nav">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home</a>
-                                    </li>
                                     <li class="nav-item dropdown dropdown-slide">
                                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=""
-                                            >Dashboard<span><i class="fa fa-angle-down"></i></span>
+                                            >Just Make<span><i class="fa fa-angle-down"></i></span>
                                         </a>
 
                                         <!-- Dropdown list -->
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="dashboard.html">Dashboard</a>
-                                            <a class="dropdown-item" href="dashboard-my-ads.html">Dashboard My Ads</a>
-                                            <a class="dropdown-item" href="dashboard-favourite-ads.html"
-                                                >Dashboard Favourite Ads</a
-                                            >
-                                            <a class="dropdown-item" href="dashboard-archived-ads.html"
-                                                >Dashboard Archived Ads</a
-                                            >
-                                            <a class="dropdown-item" href="dashboard-pending-ads.html"
-                                                >Dashboard Pending Ads</a
-                                            >
+                                            <a class="dropdown-item" href="dashboard.html">全部食譜</a>
+                                            <a class="dropdown-item" href="dashboard-my-ads.html">健身好食</a>
+                                            <a class="dropdown-item" href="dashboard-favourite-ads.html">烘焙點心</a>
                                         </div>
                                     </li>
                                     <li class="nav-item active">
-										<a class="nav-link" href="video.html">Video</a>
-									</li>
-                                    <li class="nav-item dropdown dropdown-slide">
-                                        <a
-                                            class="nav-link dropdown-toggle"
-                                            href=""
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false"
-                                        >
-                                            備餐不麻煩 <span><i class="fa fa-angle-down"></i></span>
-                                        </a>
-                                        <!-- Dropdown list -->
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="category.html">找蛋白</a>
-                                        </div>
+                                        <a class="nav-link" href="video.html">Cooktube</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="">備餐不麻煩</a>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav ml-auto mt-10">
@@ -103,7 +81,7 @@
                                         <a class="nav-link login-button" href="login.html">Login</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-white add-button" href="ad-recipe.html"
+                                        <a class="nav-link text-white add-button" id="addRecipe"
                                             ><i class="fa fa-plus-circle"></i> Add Recipe</a
                                         >
                                     </li>
@@ -276,9 +254,7 @@
                             </div>
                         </div>
                     </fieldset>
-
-                    
-
+                       
                     <!-- 計算總營養素 -->
                     <fieldset class="border bg-white p-4 my-5 ad-feature bg-gray">
                         <div class="row">
@@ -305,21 +281,21 @@
                             </div>
                         </div>
                     </fieldset>
-                    <!-- ad-feature start -->
 
-                    <!-- submit button -->
-                    <!-- <div class="checkbox d-inline-flex">
-                        <input type="checkbox" id="terms-&-condition" class="mt-1" />
-                        <label for="terms-&-condition" class="ml-2"
-                            >By click you must agree with our
-                            <span>
-                                <a class="text-success" href="terms-condition.html"
-                                    >Terms & Condition and Posting Rules.</a
-                                ></span
-                            >
-                        </label>
-                    </div> -->
-                    <!-- <button type="submit" class="btn btn-primary d-block mt-2" id="click">Post Your Recipe</button> -->
+                    <!-- TOKEN HERE - display none -->
+
+                    <fieldset>
+                        <div class="jwtToken" >
+                            <input
+                                type="text"
+                                value="0"
+                                name="jwtToken"
+                                id="jwtToken"
+                            />
+                        </div>
+                    </fieldset>
+                    <!-- TOKEN HERE - display none -->
+
                     <input type="submit" value="Post Your Recipe" id="click" class="btn btn-primary d-block mt-2"/>
                 </form>
             </div>

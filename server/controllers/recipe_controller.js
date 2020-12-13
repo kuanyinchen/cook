@@ -1,5 +1,7 @@
 const _ = require('lodash');
 const Recipe = require('../models/recipe_model');
+const jwt = require('jsonwebtoken');
+const { JWT_secret } = process.env;
 const pageSize = 6;
 
 //const pattern = /<td>.*?<\/td>.*?<td>(.*?)<\/td>/s;
@@ -15,21 +17,30 @@ const createRecipe = async (req, res) => {
     // }
     let mainPhoto = req.files.cover[0].key;
     let main_pho = mainPhoto.split('/');
+    let token = body.jwtToken;
 
-    const recipe = {
-        title: body.title,
-        description: body.description,
-        size: body.quantity,
-        cooktime: body.time,
-        ingredients: JSON.stringify(body.ingredient),
-        grams: JSON.stringify(body.grams),
-        main_photo: main_pho[1],
-        //other_photo: JSON.stringify(images),
-        step_explain: JSON.stringify(body.step_d),
-    };
+    jwt.verify(token, JWT_secret, (err, decoded) => {
+        if (err) {
+            res.send('jwtToken has wrong');
+        } else {
+            const recipe = {
+                title: body.title,
+                description: body.description,
+                size: body.quantity,
+                cooktime: body.time,
+                ingredients: JSON.stringify(body.ingredient),
+                grams: JSON.stringify(body.grams),
+                main_photo: main_pho[1],
+                //other_photo: JSON.stringify(images),
+                step_explain: JSON.stringify(body.step_d),
+                user_name: decoded.name,
+                userID: decoded.id,
+            };
 
-    const recipeId = Recipe.createRecipe(recipe);
-    res.status(200).redirect('/');
+            const recipeId = Recipe.createRecipe(recipe);
+            res.status(200).redirect('/');
+        }
+    });
 };
 
 module.exports = {

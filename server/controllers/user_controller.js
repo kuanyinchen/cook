@@ -35,9 +35,8 @@ const userRegist = async (req, res) => {
             id: userInfo.id,
             name: r_name,
             email: r_email,
-            exp: 86400,
         };
-        return jwt.sign(payload, JWT_secret);
+        return jwt.sign(payload, JWT_secret, { expiresIn: '1 day' });
     };
 
     res.status(200).json({
@@ -71,9 +70,8 @@ const userLogin = async (req, res) => {
             id: user.id,
             name: user.name,
             email: mail,
-            exp: 86400,
         };
-        return jwt.sign(payload, JWT_secret);
+        return jwt.sign(payload, JWT_secret, { expiresIn: '1 day' });
     };
 
     res.status(200).json({

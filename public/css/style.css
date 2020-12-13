@@ -2745,4 +2745,8 @@ form textarea {
     text-decoration: none;
 }
 
+.jwtToken {
+    display: none;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

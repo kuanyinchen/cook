@@ -12,8 +12,15 @@ loadingredients = async () => {
     }
 };
 
+loadToken = () => {
+    const jwtToken = localStorage.getItem('jwtToken');
+    const column = document.getElementById('jwtToken');
+    column.value = jwtToken;
+};
+
 window.onload = function () {
     loadingredients();
+    loadToken();
 };
 
 //畫面上原本的食材克數欄位

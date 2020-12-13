@@ -16,7 +16,6 @@ const socketCon = (io) => {
             });
         });
         socket.on('total_nutritions', function (data) {
-            console.log('is server here?');
             let info = {
                 calories: data[0],
                 proteins: data[1],
