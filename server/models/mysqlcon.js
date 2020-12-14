@@ -11,6 +11,7 @@ const mysqlConfig = {
 };
 
 const mysqlCon = mysql.createConnection(mysqlConfig);
+mysqlCon.connect(console.log('has connected'));
 
 const query = (statement, info) => {
     return new Promise((resolve, reject) => {
