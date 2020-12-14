@@ -62,7 +62,7 @@ app.use(function (err, req, res, next) {
 // });
 
 http.listen(port, () => {
-    console.log('socket.io listening on *:3000');
+    console.log(`socket.io listening on *:${port}`);
 });
 
 module.exports = app;
