@@ -15,8 +15,13 @@ const createRecipe = async (req, res) => {
     //     let other_pho = image.split('/');
     //     images.push(other_pho[1]);
     // }
-    let mainPhoto = req.files.cover[0].key;
-    let main_pho = mainPhoto.split('/');
+    let mainPhotos = [];
+    for (let i = 0; i < req.files.cover.length; i++) {
+        let mainPhoto = req.files.cover[i].key;
+        let main_pho = mainPhoto.split('/');
+        mainPhotos.push(main_pho[1]);
+    }
+
     let token = body.jwtToken;
 
     jwt.verify(token, JWT_secret, (err, decoded) => {
@@ -30,7 +35,7 @@ const createRecipe = async (req, res) => {
                 cooktime: body.time,
                 ingredients: JSON.stringify(body.ingredient),
                 grams: JSON.stringify(body.grams),
-                main_photo: main_pho[1],
+                main_photo: JSON.stringify(mainPhotos),
                 //other_photo: JSON.stringify(images),
                 step_explain: JSON.stringify(body.step_d),
                 user_name: decoded.name,
