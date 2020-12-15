@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const Recipe = require('../models/recipe_model');
+const Recipe = require('../models/upload_model');
 const jwt = require('jsonwebtoken');
 const { JWT_secret } = process.env;
 const pageSize = 6;
