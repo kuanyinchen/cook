@@ -21,6 +21,7 @@ const createRecipe = async (req, res) => {
         let main_pho = mainPhoto.split('/');
         mainPhotos.push(main_pho[1]);
     }
+    console.log(mainPhotos);
 
     let token = body.jwtToken;
 

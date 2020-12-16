@@ -11,7 +11,7 @@ router.get('/recipes/all', async (req, res) => {
 
     for (let i = 0; i < recipes.length; i++) {
         ingredients = JSON.parse(recipes[i].ingredients);
-        main_photo = recipes[i].main_photo;
+        main_photo = JSON.parse(recipes[i].main_photo);
         other_photo = JSON.parse(recipes[i].other_photo);
         step_explain = JSON.parse(recipes[i].step_explain);
         grams = JSON.parse(recipes[i].grams);
@@ -42,7 +42,7 @@ router.get('/recipes/fitness', async (req, res) => {
 
     for (let i = 0; i < recipes.length; i++) {
         ingredients = JSON.parse(recipes[i].ingredients);
-        main_photo = recipes[i].main_photo;
+        main_photo = JSON.parse(recipes[i].main_photo);
         other_photo = JSON.parse(recipes[i].other_photo);
         step_explain = JSON.parse(recipes[i].step_explain);
         grams = JSON.parse(recipes[i].grams);
@@ -73,7 +73,7 @@ router.get('/recipes/baking', async (req, res) => {
 
     for (let i = 0; i < recipes.length; i++) {
         ingredients = JSON.parse(recipes[i].ingredients);
-        main_photo = recipes[i].main_photo;
+        main_photo = JSON.parse(recipes[i].main_photo);
         other_photo = JSON.parse(recipes[i].other_photo);
         step_explain = JSON.parse(recipes[i].step_explain);
         grams = JSON.parse(recipes[i].grams);
@@ -83,8 +83,6 @@ router.get('/recipes/baking', async (req, res) => {
         recipes[i].step_explain = step_explain;
         recipes[i].grams = grams;
     }
-
-    console.log(recipes);
 
     let myObj = { data: recipes };
 
