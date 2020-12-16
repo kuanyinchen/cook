@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale =1.0" />
+        <!-- <link rel="stylesheet" href="../css/bootstrap.min.css" /> -->
+        <title>Just Make - 備餐不麻煩</title>
+    </head>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <body>
+        <h3 class="text-center mb-3"><i class="fas fa-utensils"></i>備餐不麻煩</h3>
+       
+            <span>性別：</span>
+            <input type="radio" name="gender" id="male" value="male" />男生
+            <input type="radio" name="gender" id="female" value="female" />女生
+            <br />
+            <span>年齡：</span>
+            <input type="text" name="age" id="age" />
+            <br />
+            <span>身高：</span>
+            <input type="text" name="cm" id="cm" />
+            <br />
+            <span>體重：</span>
+            <input type="text" name="kg" id="kg" />
+            <br />
+            <span>你的基礎代謝率BMR ：</span>
+            <input type="text" name="bmr" id="bmr" readonly="readonly">
+            <br>
+            <span>每週活動量：</span>
+            <input type="radio" name="activity" value="1" />久坐
+            <input type="radio" name="activity" value="2" />輕鬆運動
+            <input type="radio" name="activity" value="3" />中等強度運動
+            <input type="radio" name="activity" value="4" />中高強度運動
+            <input type="radio" name="activity" value="5" />高強度運動
+            <br />
+            <span>每日總消耗熱量TDEE ：</span>
+            <input type="text" name="tdee" id="tdee" readonly="readonly">
+            <br/>
+            <span>熱量分配(碳水/蛋白質/脂肪)：</span>
+            <input type="radio" name="distribution" value="1" />一般（50%/30%/20%）
+            <input type="radio" name="distribution" value="2" />高蛋白質（25%/45%/30%）
+            <br />
+            
+            碳水:<input type="text" name="C" id="C" readonly="readonly"> 
+            蛋白質:<input type="text" name="P" id="P" readonly="readonly"> 
+            脂肪:<input type="text" name="F" id="F" readonly="readonly"> 
+            <br>
+            <input type="submit" value="送出資料" id="click" />
+        
+        </div>
+        <script src="../js/noproblem.js"></script>
+    </body>
+</html>
