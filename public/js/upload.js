@@ -25,20 +25,26 @@ window.onload = function () {
 
 //畫面上原本的食材克數欄位
 $(document).ready(function () {
-    //let i = 0;
     const socket = io();
     const selectIngredientEle = document.querySelector('#ingredient0');
     const selectGramsEle = document.querySelector('#grams0');
 
+    selectGramsEle.addEventListener('change', (event) => {
+        set = {
+            ingredient: selectIngredientEle.value,
+            gram: selectGramsEle.value,
+        };
+        socket.emit('query_nutrition', set);
+        return false;
+    });
+
     selectIngredientEle.addEventListener('change', (event) => {
-        selectGramsEle.addEventListener('change', (event) => {
-            set = {
-                ingredient: selectIngredientEle.value,
-                gram: selectGramsEle.value,
-            };
-            socket.emit('query_nutrition', set);
-            return false;
-        });
+        set = {
+            ingredient: selectIngredientEle.value,
+            gram: selectGramsEle.value,
+        };
+        socket.emit('query_nutrition', set);
+        return false;
     });
 
     socket.on('nutrition_from_db', function (data) {
