@@ -19,9 +19,8 @@ const createRecipe = async (req, res) => {
     for (let i = 0; i < req.files.cover.length; i++) {
         let mainPhoto = req.files.cover[i].key;
         let main_pho = mainPhoto.split('/');
-        mainPhotos.push(main_pho[1]);
+        mainPhotos.push('http://d26yxr7f4pai8s.cloudfront.net/RecipePic/' + main_pho[1]);
     }
-    console.log(mainPhotos);
 
     let token = body.jwtToken;
 
