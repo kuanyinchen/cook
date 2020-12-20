@@ -5,8 +5,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Just Make - login</title>
-
+        <title>Just Make</title>
         <!-- FAVICON -->
         <link href="img/favicon.png" rel="shortcut icon" />
         <!-- PLUGINS CSS STYLE -->
@@ -31,7 +30,6 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
 
     <body class="body-wrapper">
@@ -63,15 +61,14 @@
 
                                         <!-- Dropdown list -->
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="category_all.html">全部食譜</a>
-                                            <a class="dropdown-item" href="category_fitness.html">健身好食</a>
-                                            <a class="dropdown-item" href="category_baking.html">烘焙點心</a>
+                                            <a class="dropdown-item" href="dashboard.html">全部食譜</a>
+                                            <a class="dropdown-item" href="dashboard-my-ads.html">健身好食</a>
+                                            <a class="dropdown-item" href="dashboard-favourite-ads.html">烘焙點心</a>
                                         </div>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="video.html">Cooktube</a>
                                     </li>
-
                                     <li class="nav-item active">
                                         <a class="nav-link" href="">備餐不麻煩</a>
                                     </li>
@@ -92,50 +89,67 @@
                 </div>
             </div>
         </section>
-        <!-- ===========================
-        =             Login            =
-        ================================ -->
-        <section class="login py-5 border-top-1">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5 col-md-8 align-item-center">
-                        <div class="border">
-                            <h3 class="bg-gray p-4">Login Now</h3>
-                            <!-- <form action="/api/1.0/user/login" method="POST" enctype="application/x-www-form-urlencoded"> -->
-                            <fieldset class="p-4">
-                                <input
-                                    type="email"
-                                    name="mail"
-                                    id="mail"
-                                    placeholder="Usermail*"
-                                    class="border p-3 w-100 my-2"
-                                />
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    placeholder="Password*"
-                                    class="border p-3 w-100 my-2"
-                                />
-                                <div class="loggedin-forgot">
-                                    <input type="checkbox" id="keep-me-logged-in" />
-                                    <label for="keep-me-logged-in" class="pt-3 pb-2">Keep me logged in</label>
-                                </div>
-                                <input type="submit" value="Log In" id="login" class="btn btn-primary d-block mt-2" />
 
-                                <a class="mt-3 d-block text-primary" href="#">Forget Password?</a>
-                                <a class="mt-3 d-inline-block text-primary" href="register.html">Register Now</a>
-                            </fieldset>
-                            <!-- </form> -->
+        <section class="page-title">
+            <!-- Container Start -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 text-center">
+                        <!-- Title text -->
+                        <h3>食譜影片</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Container End -->
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <video
+                                id="videoPlayer"
+                                width="650"
+                                controls
+                                muted="muted"
+                                autoplay
+                                class="img-fluid w-100 rounded"
+                                alt=""
+                            >
+                                <source
+                                    src="http://d26yxr7f4pai8s.cloudfront.net/RecipeVideo/1607077583874-Cheesecake_Flan_Recipe.mp4"
+                                    type="video/mp4"
+                                />
+                            </video>
+                            <!-- <img src="images/about/about.jpg" class="img-fluid w-100 rounded" alt=""> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pt-5 pt-lg-0">
+                        <div class="about-content">
+                            <h3 class="font-weight-bold">Cheesecake Flan Recipe</h3>
+                            <p>
+                                Cheesecake Flan is a very delicate and elegant dessert that can be prepared for any
+                                occasion. It is rich with a smooth, silky texture and the delicious caramel syrup is
+                                making it absolutely irresistible.
+                            </p>
+                            <h3 class="font-weight-bold">How to make</h3>
+                            <p>
+                                this the kind of dessert that needs to be made in advance as chilling it is essential.
+                                The recipe is really easy. Make sure no cream cheese lumps remain in the batter and make
+                                sure to skim off the foam so the flan doesn’t create a thick skin after baking. I’ve
+                                added lemon juice in the caramel to reduce its sweetness but feel free to leave it out
+                                if for some reason you don’t enjoy the lemon in your desserts. The cream cheese gives a
+                                great texture and blances the sweetness of the sweetened condensed milk in the batter.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
         <!--============================
-        =            Footer            =
-        =============================-->
+=            Footer            =
+=============================-->
 
         <footer class="footer section section-sm">
             <!-- Container Start -->
@@ -271,6 +285,6 @@
         <!-- google map -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
         <script src="plugins/google-map/gmap.js"></script>
-        <script src="js/user.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>

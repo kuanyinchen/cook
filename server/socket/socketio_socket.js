@@ -19,8 +19,8 @@ const socketCon = (io) => {
             let info = {
                 calories: data[0],
                 proteins: data[1],
-                fat: data[2],
-                carbohydrates: data[3],
+                carbohydrates: data[2],
+                fat: data[3],
                 title: data[4],
                 category: data[5],
             };
