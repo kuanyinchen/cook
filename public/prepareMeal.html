@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Just Make - Baking</title>
+        <title>Just Make</title>
 
         <!-- FAVICON -->
         <link href="img/favicon.png" rel="shortcut icon" />
@@ -71,6 +71,7 @@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="videoWall.html">Cooktube</a>
                                     </li>
+
                                     <li class="nav-item active">
                                         <a class="nav-link" href="prepareMeal.html">備餐不麻煩</a>
                                     </li>
@@ -91,46 +92,117 @@
                 </div>
             </div>
         </section>
+        <!--==================================
+=            User Profile            =
+===================================-->
 
-        <section class="page-search">
+        <section class="user-profile section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <!-- Advance Search -->
-                        <div class="advance-search">
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-10">
+                    <div class="col-md-10 offset-md-1 col-lg-12 offset-lg-0">
+                        <!-- Edit Profile Welcome Text -->
+                        <div class="widget welcome-message">
+                            <h1 class="bmrtdee">基礎代謝率BMR與每日總消耗熱量TDEE計算器</h1>
+                            <p class="bmrP">
+                                基礎代謝率 (BMR, Basel Metabolic
+                                Rate)：簡易的說法就是你一整天什麼事都不做，一直躺在床上，要維持你身體的運作會消耗的最低能量，而基礎代謝率會隨著年齡跟體重的變化而改變。
+                            </p>
+                        </div>
+                        <!-- Edit Personal Info -->
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="widget personal-info">
+                                    <h3 class="widget-header user">個人資訊</h3>
+                                    <!-- <form action="#"> -->
+
+                                    <div class="form-group">
+                                        <label for="first-name">性別</label><br />
+                                        <input type="radio" name="gender" id="male" value="male" /> 男生
+                                        <input type="radio" name="gender" id="female" value="female" /> 女生
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="last-name">年齡</label>
+                                        <input type="text" class="form-control" name="age" id="age" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name">身高</label>
+                                        <input type="text" class="form-control" name="cm" id="cm" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name">體重</label>
+                                        <input type="text" class="form-control" name="kg" id="kg" />
+                                    </div>
+
+                                    <!-- Comunity Name -->
+                                    <div class="form-group">
+                                        <label for="comunity-name">你的基礎代謝率BMR</label>
                                         <input
                                             type="text"
-                                            class="form-control my-2 my-lg-0"
-                                            id="inputtext4"
-                                            placeholder="What are you looking for"
+                                            class="form-control"
+                                            name="bmr"
+                                            id="bmr"
+                                            readonly="readonly"
+                                        />
+                                        <br />
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <!-- Change Password -->
+                                <div class="widget personal-info">
+                                    <h3 class="widget-header user">TDEE</h3>
+                                    <!-- <form action="#"> -->
+                                    <!-- Current Password -->
+                                    <div class="form-group">
+                                        <label for="comunity-name">每週活動量</label>
+                                        <br />
+                                        <input type="radio" name="activity" value="1" /> 久坐
+                                        <input type="radio" name="activity" value="2" /> 輕鬆運動
+                                        <input type="radio" name="activity" value="3" /> 中等強度運動
+                                        <input type="radio" name="activity" value="4" /> 中高強度運動
+                                        <input type="radio" name="activity" value="5" /> 高強度運動
+                                    </div>
+                                    <!-- New Password -->
+                                    <div class="form-group">
+                                        <label for="comunity-name">每日總消耗熱量TDEE</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="tdee"
+                                            id="tdee"
+                                            readonly="readonly"
                                         />
                                     </div>
-
-                                    <div class="form-group col-md-2">
-                                        <button type="submit" class="btn btn-primary">Search Now</button>
+                                    <!-- Confirm New Password -->
+                                    <div class="form-group">
+                                        <label for="confirm-password">熱量分配(碳水/蛋白質/脂肪)</label>
+                                        <br />
+                                        <input type="radio" name="distribution" value="1" /> 一般（50%/30%/20%）
+                                        <input type="radio" name="distribution" value="2" /> 高蛋白質（25%/45%/30%）
+                                        <br />
                                     </div>
+                                    <div class="form-group">
+                                        <label>碳水</label>
+                                        <input type="text" class="form-control" name="C" id="C" readonly="readonly" />
+                                        <label>蛋白質</label>
+                                        <input type="text" class="form-control" name="P" id="P" readonly="readonly" />
+                                        <label>脂肪</label>
+                                        <input type="text" class="form-control" name="F" id="F" readonly="readonly" />
+                                    </div>
+                                    <br />
+                                    <input type="submit" value="推薦食譜" id="click" class="btn btn-transparent" />
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- SEARCH NOW 以上 -->
-        <section class="section-sm">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="product-grid-list">
-                            <div class="row mt-30"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!--============================
 =            Footer            =
 =============================-->
@@ -269,6 +341,6 @@
         <!-- google map -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
         <script src="plugins/google-map/gmap.js"></script>
-        <script src="js/videoWall.js"></script>
+        <script src="js/prepareMeal.js"></script>
     </body>
 </html>

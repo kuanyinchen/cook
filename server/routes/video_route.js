@@ -14,8 +14,6 @@ router.get('/video/all', async (req, res) => {
     const VideosQuery = 'SELECT * FROM video ORDER BY id';
     const Video = await query(VideosQuery);
 
-    console.log(Video.length);
-
     for (let i = 0; i < Video.length; i++) {
         Video[i].videolink = 'http://d26yxr7f4pai8s.cloudfront.net/' + Video[i].videolink;
     }
@@ -26,6 +24,25 @@ router.get('/video/all', async (req, res) => {
 
     return {
         Video,
+    };
+});
+
+router.get('/video/single', async (req, res) => {
+    const id = req.query.id;
+
+    body = req.body;
+
+    const VideosQuery = `SELECT * FROM video where id = ${id}`;
+    const Video = await query(VideosQuery);
+
+    Video[0].videolink = 'http://d26yxr7f4pai8s.cloudfront.net/' + Video[0].videolink;
+
+    let myVideo = { data: Video };
+
+    res.send(Video);
+
+    return {
+        myVideo,
     };
 });
 

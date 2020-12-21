@@ -32,7 +32,7 @@ axios.get('/api/1.0/recipes/all').then((res) => {
         let card_title = document.createElement('h4');
         card_title.setAttribute('class', 'card-title');
         let title_a = document.createElement('a');
-        title_a.href = 'single_recipe.html.html';
+        title_a.href = 'single_recipe.html?id=' + recipeInfos[i].id;
         title_a.innerText = recipeInfos[i].title;
         card_title.appendChild(title_a);
         card_body.appendChild(card_title);
@@ -42,7 +42,7 @@ axios.get('/api/1.0/recipes/all').then((res) => {
         let card_li_1 = document.createElement('li');
         card_li_1.setAttribute('class', 'list-inline-item');
         let li_a = document.createElement('a');
-        li_a.href = 'single_recipe.html.html';
+        // li_a.href = 'single_recipe.html.html';
         li_a.innerText = recipeInfos[i].category;
         card_li_1.appendChild(li_a);
         card_ul.appendChild(card_li_1);

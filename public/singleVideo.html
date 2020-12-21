@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Just Make - Baking</title>
+        <title>Just Make</title>
 
         <!-- FAVICON -->
         <link href="img/favicon.png" rel="shortcut icon" />
@@ -63,16 +63,17 @@
 
                                         <!-- Dropdown list -->
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="category_all.html">全部食譜</a>
-                                            <a class="dropdown-item" href="category_fitness.html">健身好食</a>
-                                            <a class="dropdown-item" href="category_baking.html">烘焙點心</a>
+                                            <a class="dropdown-item" href="dashboard.html">全部食譜</a>
+                                            <a class="dropdown-item" href="dashboard-my-ads.html">健身好食</a>
+                                            <a class="dropdown-item" href="dashboard-favourite-ads.html">烘焙點心</a>
                                         </div>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="videoWall.html">Cooktube</a>
+                                        <a class="nav-link" href="video.html">Cooktube</a>
                                     </li>
+
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="prepareMeal.html">備餐不麻煩</a>
+                                        <a class="nav-link" href="">備餐不麻煩</a>
                                     </li>
                                 </ul>
                                 <ul class="navbar-nav ml-auto mt-10">
@@ -91,42 +92,15 @@
                 </div>
             </div>
         </section>
+        <!--=================================
+=            Single Blog            =
+==================================-->
 
-        <section class="page-search">
+        <section class="blog single-blog section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <!-- Advance Search -->
-                        <div class="advance-search">
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-10">
-                                        <input
-                                            type="text"
-                                            class="form-control my-2 my-lg-0"
-                                            id="inputtext4"
-                                            placeholder="What are you looking for"
-                                        />
-                                    </div>
-
-                                    <div class="form-group col-md-2">
-                                        <button type="submit" class="btn btn-primary">Search Now</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- SEARCH NOW 以上 -->
-        <section class="section-sm">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="product-grid-list">
-                            <div class="row mt-30"></div>
-                        </div>
+                    <div class="col-md-10 offset-md-1 col-lg-12 offset-lg-0">
+                        <article class="single-post"></article>
                     </div>
                 </div>
             </div>
@@ -269,6 +243,6 @@
         <!-- google map -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
         <script src="plugins/google-map/gmap.js"></script>
-        <script src="js/videoWall.js"></script>
+        <script src="js/singleVideo.js"></script>
     </body>
 </html>

@@ -1,6 +1,6 @@
 axios.get('/api/1.0/video/all').then((res) => {
     let videoInfos = res.data;
-    console.log(videoInfos);
+
     for (let i = 0; i < videoInfos.length; i++) {
         let frame = document.createElement('div');
         frame.setAttribute('class', 'col-sm-12 col-lg-4 col-md-6');
@@ -38,7 +38,7 @@ axios.get('/api/1.0/video/all').then((res) => {
         let card_title = document.createElement('h4');
         card_title.setAttribute('class', 'card-title');
         let title_a = document.createElement('a');
-        title_a.href = 'single_recipe.html.html';
+        title_a.href = 'singleVideo.html?id=' + videoInfos[i].id;
         title_a.innerText = videoInfos[i].title;
         card_title.appendChild(title_a);
         card_body.appendChild(card_title);
