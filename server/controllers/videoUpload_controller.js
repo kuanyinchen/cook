@@ -11,7 +11,7 @@ const createVideo = async (req, res) => {
     };
 
     const videoId = Video.createVideo(video);
-    res.status(200).send('gogo');
+    res.status(200).redirect('/');
 };
 
 module.exports = {
