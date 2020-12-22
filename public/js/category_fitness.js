@@ -73,3 +73,8 @@ axios.get('/api/1.0/recipes/fitness').then((res) => {
 function get(selector) {
     return document.querySelector(selector);
 }
+
+$('#fitness_search').on('click', () => {
+    let keyword = document.getElementById('inputtext').value;
+    window.location.href = `/search.html?key=${keyword}`;
+});

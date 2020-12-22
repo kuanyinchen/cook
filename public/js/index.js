@@ -235,3 +235,8 @@ $('#addRecipe').on('click', () => {
         window.location.href = '/login.html';
     }
 });
+
+$('#index_search').on('click', () => {
+    let keyword = document.getElementById('inputtext4').value;
+    window.location.href = `/search.html?key=${keyword}`;
+});

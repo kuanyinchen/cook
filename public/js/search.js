@@ -1,4 +1,8 @@
-axios.get('/api/1.0/recipes/all').then((res) => {
+let url_string = window.location.href;
+let url = new URL(url_string);
+let key = url.searchParams.get('key');
+
+axios.get('/api/1.0/recipes/search', { params: { key: key } }).then((res) => {
     let recipeInfos = res.data.data;
 
     for (let i = 0; i < recipeInfos.length; i++) {
@@ -42,7 +46,7 @@ axios.get('/api/1.0/recipes/all').then((res) => {
         let card_li_1 = document.createElement('li');
         card_li_1.setAttribute('class', 'list-inline-item');
         let li_a = document.createElement('a');
-        // li_a.href = 'single_recipe.html.html';
+        li_a.href = 'category_baking.html';
         li_a.innerText = recipeInfos[i].category;
         card_li_1.appendChild(li_a);
         card_ul.appendChild(card_li_1);
@@ -74,9 +78,7 @@ function get(selector) {
     return document.querySelector(selector);
 }
 
-$('#all_search').on('click', () => {
-    console.log('search');
+$('#search').on('click', () => {
     let keyword = document.getElementById('inputtext').value;
-    console.log(keyword);
     window.location.href = `/search.html?key=${keyword}`;
 });

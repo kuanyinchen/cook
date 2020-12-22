@@ -73,3 +73,8 @@ axios.get('/api/1.0/recipes/baking').then((res) => {
 function get(selector) {
     return document.querySelector(selector);
 }
+
+$('#baking_search').on('click', () => {
+    let keyword = document.getElementById('inputtext').value;
+    window.location.href = `/search.html?key=${keyword}`;
+});
