@@ -229,9 +229,17 @@
 $('#addRecipe').on('click', () => {
     let jwtToken = localStorage.getItem('jwtToken');
     if (jwtToken) {
-        window.location.href = '/ad-recipe.html';
+        window.location.href = '/recipe_post.html';
     } else {
-        console.log('no token');
+        window.location.href = '/login.html';
+    }
+});
+
+$('#footer_addRecipe').on('click', () => {
+    let jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+        window.location.href = '/recipe_post.html';
+    } else {
         window.location.href = '/login.html';
     }
 });

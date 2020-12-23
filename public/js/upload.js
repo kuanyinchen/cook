@@ -52,11 +52,6 @@ $(document).ready(function () {
         document.getElementById('proteins0').innerHTML = data.protein;
         document.getElementById('fat0').innerHTML = data.fat;
         document.getElementById('carbohydrates0').innerHTML = data.carbohydrates;
-
-        // document.getElementById('total_calories').innerHTML = data.calories;
-        // document.getElementById('total_proteins').innerHTML = data.protein;
-        // document.getElementById('total_fat').innerHTML = data.fat;
-        // document.getElementById('total_carbohydrates').innerHTML = data.carbohydrates;
     });
 });
 
@@ -110,22 +105,12 @@ $('#btn-add-row').click(() => {
             document.getElementById('proteins' + i).innerHTML = data.protein;
             document.getElementById('fat' + i).innerHTML = data.fat;
             document.getElementById('carbohydrates' + i).innerHTML = data.carbohydrates;
-
-            // document.getElementById('total_calories').innerHTML =
-            //     parseInt(document.getElementById('total_calories').innerHTML) + data.calories;
-            // document.getElementById('total_proteins').innerHTML =
-            //     parseInt(document.getElementById('total_proteins').innerHTML) + data.protein;
-            // document.getElementById('total_carbohydrates').innerHTML =
-            //     parseInt(document.getElementById('total_carbohydrates').innerHTML) + data.carbohydrates;
-            // document.getElementById('total_fat').innerHTML =
-            //     parseInt(document.getElementById('total_fat').innerHTML) + data.fat;
         });
     });
     eleId++;
 });
 
 $('#btn-sum').click(() => {
-    // console.log('123');
     const cal = document.getElementsByClassName('calories');
     const pro = document.getElementsByClassName('protein');
     const carb = document.getElementsByClassName('carbohydrates');

@@ -390,7 +390,7 @@ button {
 }
 
 .overly:before {
-    background: url('../img/keyvisual.png') no-repeat center center;
+    background: url('http://d26yxr7f4pai8s.cloudfront.net/RecipePic/keyvisual.png') no-repeat center center;
     content: '';
     position: absolute;
     top: 0;
@@ -2517,25 +2517,25 @@ article.single-post p {
     margin-top: -5px;
 }
 
-.ad-post form fieldset input:focus {
+.post form fieldset input:focus {
     outline: 0;
 }
 
-.ad-post form fieldset label {
+.post form fieldset label {
     margin-bottom: 0;
 }
 
-.ad-post .choose-file {
+.post .choose-file {
     cursor: pointer;
     display: block;
     border: 3px dashed #eaedef;
 }
 
-.ad-post .choose-file .select-files {
+.post .choose-file .select-files {
     border-radius: 45px;
 }
 
-.ad-post textarea {
+.post textarea {
     height: 200px;
 }
 
@@ -2760,6 +2760,17 @@ form textarea {
 
 .sections {
     padding: 30px 0;
+}
+
+#footer_addRecipe {
+    background-color: #94524a;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#footer_addRecipe:hover {
+    background-color: #e28413;
+    text-decoration: none;
 }
 
 /*# sourceMappingURL=maps/style.css.map */
