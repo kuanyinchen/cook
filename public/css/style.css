@@ -686,6 +686,13 @@ ul.pagination .active a {
     padding: 6px 20px !important;
 }
 
+.signout-button {
+    border: 2px solid #dedede;
+    margin-right: 8px;
+    padding: 6px 20px !important;
+    display: none;
+}
+
 @media (max-width: 400px) {
     .login-button {
         display: inline-block;
@@ -2697,7 +2704,8 @@ form textarea {
 .footer-bottom {
     position: relative;
     background: #363839;
-    padding: 25px 0;
+    padding: 60px 0;
+    text-align: center !important;
 }
 
 @media (max-width: 480px) {
@@ -2771,6 +2779,15 @@ form textarea {
 #footer_addRecipe:hover {
     background-color: #e28413;
     text-decoration: none;
+}
+.footer-bottom1 {
+    position: relative;
+    background: #363839;
+    padding: 60px 0;
+    text-align: center !important;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
 }
 
 /*# sourceMappingURL=maps/style.css.map */

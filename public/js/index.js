@@ -1,3 +1,7 @@
+window.onload = () => {
+    ifLogin();
+};
+
 (function ($) {
     'use strict';
 
@@ -247,4 +251,23 @@ $('#footer_addRecipe').on('click', () => {
 $('#index_search').on('click', () => {
     let keyword = document.getElementById('inputtext4').value;
     window.location.href = `/search.html?key=${keyword}`;
+});
+
+const ifLogin = () => {
+    let jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+        let login = document.getElementById('login');
+        login.style.display = 'none';
+        let signout = document.getElementById('signout');
+        signout.style.display = 'block';
+    }
+};
+
+$('#signout').on('click', () => {
+    console.log('here');
+    localStorage.removeItem('jwtToken');
+    let login = document.getElementById('login');
+    login.style.display = 'block';
+    let signout = document.getElementById('signout');
+    signout.style.display = 'none';
 });
