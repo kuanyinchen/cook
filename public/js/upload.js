@@ -122,7 +122,6 @@ $('#btn-sum').click(() => {
     calArray = [];
     for (let calories of cal) {
         calArray.push(parseInt(calories.innerHTML));
-        console.log(calories.innerHTML);
     }
     calArray.reduce((acc, curr) => (total_cal.innerHTML = acc + curr));
 
@@ -171,4 +170,11 @@ $('#click').on('click', function () {
     let set = [sum_calories, sum_proteins, sum_carbohydrates, sum_fat, title, category]; //[1,2,3,4]
     console.log(set);
     socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
+
+    swal({
+        title: 'Success',
+        text: 'Thanks for sharing',
+        icon: 'success',
+        buttons: false,
+    });
 });

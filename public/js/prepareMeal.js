@@ -146,3 +146,20 @@ BMR();
 const calculate = (ages, cm, kg) => {
     return 10 * kg + 6.25 * cm - 5 * ages;
 };
+
+$('#click').on('click', () => {
+    let BMR = parseInt(document.getElementById('bmr').value);
+    let TDEE = parseInt(document.getElementById('tdee').value);
+    let carbos = parseInt(document.getElementById('C').value);
+    let proteins = parseInt(document.getElementById('P').value);
+    let fats = parseInt(document.getElementById('F').value);
+
+    axios
+        .post('/api/1.0/meals/calculate', { carbos: carbos, proteins: proteins, fats: fats, bmr: BMR, tdee: TDEE })
+        .then((res) => {
+            console.log(res.data.data[0].id);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});

@@ -152,4 +152,27 @@ router.get('/recipes/search', async (req, res) => {
         recipes,
     };
 });
+
+router.post('/meals/calculate', async (req, res) => {
+    let body = req.body;
+
+    let BMR = Math.round(body.bmr / 3);
+    let TDEE = Math.round(body.tdee / 3);
+    let carbos = Math.round(body.carbos / 3);
+    let proteins = Math.round(body.proteins / 3);
+    let fats = Math.round(body.fats / 3);
+
+    const recipesSelect = `SELECT * FROM recipeAlbum INNER JOIN recipeUpload ON recipeUpload.id = recipeAlbum.id where recipeAlbum.carbohydrates between ${carbos}-10 AND ${carbos}+10 || recipeAlbum.proteins between ${proteins}-10 AND ${proteins}+10 || recipeAlbum.fat between ${fats}-10 AND ${fats}+10;`;
+
+    const recipes = await query(recipesSelect);
+
+    let result = { data: recipes };
+
+    res.json(result);
+
+    return {
+        recipes,
+    };
+});
+
 module.exports = router;
