@@ -154,16 +154,7 @@ $('#btn-add-step').click(() => {
             stepId +
             '" class="border p-3 w-100" rows="7" placeholder="Write the steps about your recipe"></textarea>'
     );
-    // $('#stepRight').append(
-    //     '<span class="mb-3 d-block">照片</span><div class="choose-file text-center my-2.5 py-4 "><label for="file-upload"><span class="d-block font-weight-bold text-dark">Drop files anywhere to upload</span><span class="d-block">or</span><span class="d-block btn bg-primary text-white my-3 select-files">Select files</span><span class="d-block">Maximum upload file size: 500 KB</span><input type="file" class="form-control-file d-none" id="file-upload" name="step_p" multiple/></label></div>'
-    // );
-    $('#stepRight').append(
-        '<span class="mb-3 d-block">' +
-            step +
-            '.</span><textarea name="step_d" id="step_d' +
-            stepId +
-            '" class="border p-3 w-100" rows="7" placeholder="Write the steps about your recipe"></textarea>'
-    );
+
     step++;
     stepId++;
 });

@@ -11,6 +11,9 @@ router.get('/recipes/all', async (req, res) => {
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
+        let autoTime = recipes[i].time_record.toISOString();
+        let time = autoTime.split('T')[0];
+
         ingredients = JSON.parse(recipes[i].ingredients);
         main_photo = JSON.parse(recipes[i].main_photo);
         other_photo = JSON.parse(recipes[i].other_photo);
@@ -21,6 +24,7 @@ router.get('/recipes/all', async (req, res) => {
         recipes[i].other_photo = other_photo;
         recipes[i].step_explain = step_explain;
         recipes[i].grams = grams;
+        recipes[i].time_record = time;
     }
 
     let myObj = { data: recipes };
