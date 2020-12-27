@@ -113,9 +113,9 @@ router.get('/recipes/more', async (req, res) => {
     const recipesQuery = `SELECT * FROM recipeUpload INNER JOIN recipeAlbum ON recipeUpload.id = recipeAlbum.id where recipeUpload.id = ${id} ORDER BY recipeUpload.id`;
     const recipe = await query(recipesQuery);
 
-    let autoTime = recipes[0].time_record.toISOString();
+    let autoTime = recipe[0].time_record.toISOString();
     let time = autoTime.split('T')[0];
-    recipes[0].time_record = time;
+    recipe[0].time_record = time;
 
     ingredients = JSON.parse(recipe[0].ingredients);
     main_photo = JSON.parse(recipe[0].main_photo);
