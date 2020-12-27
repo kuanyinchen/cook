@@ -159,56 +159,7 @@ $('#click').on('click', () => {
         .then((res) => {
             recipes = res.data.data;
 
-            // for (let i = 0; i < recipes.length; i++) {
-            //     let block = get('.trending-ads-slide');
-            //     //
-            //     let column = document.createElement('div');
-            //     column.setAttribute('class', 'col-sm-12 col-lg-4');
-            //     //
-            //     let recipe = document.createElement('div');
-            //     recipe.setAttribute('class', 'product-item bg-light');
-            //     //
-            //     let recipe_card = document.createElement('div');
-            //     recipe_card.setAttribute('class', 'card');
-            //     //卡片裡面資訊
-            //     let thumb_content = document.createElement('div');
-            //     thumb_content.setAttribute('class', 'thumb_content');
-            //     //
-            //     let a = document.createElement('a');
-            //     a.href = 'single_recipe.html?id=' + recipes[i].id;
-            //     //
-            //     let img = document.createElement('img');
-            //     img.setAttribute('class', 'card-img-top img-fluid');
-            //     img.src = recipes[i].main_photo[1];
-            //     //
-            //     a.appendChild(img);
-            //     thumb_content.appendChild(a);
-            //     //
-            //     let card_body = document.createElement('div');
-            //     card_body.setAttribute('class', 'card-body');
-            //     //
-            //     let h4 = document.createElement('h4');
-            //     h4.setAttribute('class', 'card-title');
-            //     let h4_a = document.createElement('a');
-            //     h4_a.href = 'single_recipe.html?id=' + recipes[i].id;
-            //     h4.appendChild(h4_a);
-            //     //
-            //     let p = document.createElement('p');
-            //     p.setAttribute('class', 'card-text');
-            //     p.innerText = recipes[i].description;
-            //     //
-            //     card_body.appendChild(h4);
-            //     card_body.appendChild(p);
-            //     //
-            //     recipe_card.appendChild(thumb_content);
-            //     recipe_card.appendChild(card_body);
-            //     //
-            //     recipe.appendChild(recipe_card);
-            //     //
-            //     column.appendChild(recipe);
-            //     //
-            //     block.appendChild(column);
-            // }
+            console.log(recipes);
             for (let i = 0; i < recipes.length; i++) {
                 let frame = document.createElement('div');
                 frame.setAttribute('class', 'col-sm-12 col-lg-4 col-md-6');

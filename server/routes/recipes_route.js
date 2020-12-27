@@ -46,6 +46,10 @@ router.get('/recipes/fitness', async (req, res) => {
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
+        let autoTime = recipes[i].time_record.toISOString();
+        let time = autoTime.split('T')[0];
+        recipes[i].time_record = time;
+
         ingredients = JSON.parse(recipes[i].ingredients);
         main_photo = JSON.parse(recipes[i].main_photo);
         other_photo = JSON.parse(recipes[i].other_photo);
@@ -77,6 +81,10 @@ router.get('/recipes/baking', async (req, res) => {
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
+        let autoTime = recipes[i].time_record.toISOString();
+        let time = autoTime.split('T')[0];
+        recipes[i].time_record = time;
+
         ingredients = JSON.parse(recipes[i].ingredients);
         main_photo = JSON.parse(recipes[i].main_photo);
         other_photo = JSON.parse(recipes[i].other_photo);
@@ -105,6 +113,10 @@ router.get('/recipes/more', async (req, res) => {
     const recipesQuery = `SELECT * FROM recipeUpload INNER JOIN recipeAlbum ON recipeUpload.id = recipeAlbum.id where recipeUpload.id = ${id} ORDER BY recipeUpload.id`;
     const recipe = await query(recipesQuery);
 
+    let autoTime = recipes[0].time_record.toISOString();
+    let time = autoTime.split('T')[0];
+    recipes[0].time_record = time;
+
     ingredients = JSON.parse(recipe[0].ingredients);
     main_photo = JSON.parse(recipe[0].main_photo);
     other_photo = JSON.parse(recipe[0].other_photo);
@@ -132,6 +144,10 @@ router.get('/recipes/search', async (req, res) => {
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
+        let autoTime = recipes[i].time_record.toISOString();
+        let time = autoTime.split('T')[0];
+        recipes[i].time_record = time;
+
         ingredients = JSON.parse(recipes[i].ingredients);
         main_photo = JSON.parse(recipes[i].main_photo);
         other_photo = JSON.parse(recipes[i].other_photo);
@@ -167,6 +183,10 @@ router.post('/meals/calculate', async (req, res) => {
     const recipes = await query(recipesSelect);
 
     for (let i = 0; i < recipes.length; i++) {
+        let autoTime = recipes[i].time_record.toISOString();
+        let time = autoTime.split('T')[0];
+        recipes[i].time_record = time;
+
         ingredients = JSON.parse(recipes[i].ingredients);
         main_photo = JSON.parse(recipes[i].main_photo);
         step_explain = JSON.parse(recipes[i].step_explain);

@@ -16,7 +16,7 @@ axios.get('/api/1.0/video/all').then((res) => {
         //
         let video = document.createElement('video');
         video.setAttribute('class', 'img-fluid w-100 rounded');
-        video.setAttribute('autoplay', '');
+        //video.setAttribute('autoplay', '');
         video.setAttribute('width', '650');
         video.setAttribute('controls', '');
         video.setAttribute('muted', 'muted');

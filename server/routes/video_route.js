@@ -15,6 +15,9 @@ router.get('/video/all', async (req, res) => {
     const Video = await query(VideosQuery);
 
     for (let i = 0; i < Video.length; i++) {
+        let autoTime = Video[i].time_record.toISOString();
+        let time = autoTime.split('T')[0];
+        Video[i].time_record = time;
         Video[i].videolink = 'http://d26yxr7f4pai8s.cloudfront.net/' + Video[i].videolink;
     }
 
@@ -34,6 +37,10 @@ router.get('/video/single', async (req, res) => {
 
     const VideosQuery = `SELECT * FROM video where id = ${id}`;
     const Video = await query(VideosQuery);
+
+    let autoTime = Video[0].time_record.toISOString();
+    let time = autoTime.split('T')[0];
+    Video[0].time_record = time;
 
     Video[0].videolink = 'http://d26yxr7f4pai8s.cloudfront.net/' + Video[0].videolink;
 
