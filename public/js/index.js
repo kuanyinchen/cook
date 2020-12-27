@@ -240,6 +240,7 @@ $('#addRecipe').on('click', () => {
 });
 
 $('#footer_addRecipe').on('click', () => {
+    console.log('click');
     let jwtToken = localStorage.getItem('jwtToken');
     if (jwtToken) {
         window.location.href = '/recipe_post.html';

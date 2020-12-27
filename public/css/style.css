@@ -2790,4 +2790,16 @@ form textarea {
     width: 100%;
 }
 
+.section-sm1 {
+    padding: 5px;
+}
+
+.section1 {
+    padding: 20px;
+}
+
+.bg-gray1 {
+    background: #cbb8a9;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

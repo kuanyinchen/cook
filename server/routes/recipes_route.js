@@ -166,6 +166,17 @@ router.post('/meals/calculate', async (req, res) => {
 
     const recipes = await query(recipesSelect);
 
+    for (let i = 0; i < recipes.length; i++) {
+        ingredients = JSON.parse(recipes[i].ingredients);
+        main_photo = JSON.parse(recipes[i].main_photo);
+        step_explain = JSON.parse(recipes[i].step_explain);
+        grams = JSON.parse(recipes[i].grams);
+        recipes[i].ingredients = ingredients;
+        recipes[i].main_photo = main_photo;
+        recipes[i].step_explain = step_explain;
+        recipes[i].grams = grams;
+    }
+
     let result = { data: recipes };
 
     res.json(result);
