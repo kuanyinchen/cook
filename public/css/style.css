@@ -2798,6 +2798,11 @@ form textarea {
     padding: 20px;
 }
 
+.section2 {
+    padding: 20px;
+    display: none;
+}
+
 .bg-gray1 {
     background: #cbb8a9;
 }

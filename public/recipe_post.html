@@ -83,7 +83,10 @@
                                 </ul>
                                 <ul class="navbar-nav ml-auto mt-10">
                                     <li class="nav-item">
-                                        <a class="nav-link login-button" href="login.html">Login</a>
+                                        <a class="nav-link login-button" href="login.html" id="login">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link signout-button" id="signout">Sign Out</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link text-white add-button" id="addRecipe"
@@ -109,27 +112,28 @@
                             </div>
                             <div class="col-lg-6">
                                 <h6 class="font-weight-bold pt-4 pb-1">食譜名稱:</h6>
-                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="title" id="title" />
+                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="title" id="title" value="香蒜水煮雞胸" />
                                 <h6 class="font-weight-bold pt-4 pb-1">份量（人份）:</h6>
-                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="quantity" />
+                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="quantity" value="1"/>
                                 <h6 class="font-weight-bold pt-4 pb-1">食譜說明:</h6>
                                 <textarea
                                     name="description"
                                     id="description"
                                     class="border p-3 w-100"
                                     rows="7"
-                                    placeholder="Write details about your recipe"
-                                ></textarea>
+                                >香蒜水煮雞胸這個增肌減脂聖品，相信大家一定不陌生，低溫熟成的國產雞胸肉，貼心切成好入口的大小，再撒上香蒜粉提味，吃起來很水嫩，一點都不乾柴，都快認不出是雞胸肉了！簡單料理，低脂健康又美味。
+
+                            </textarea>
                             </div>
                             <div class="col-lg-6">
                                 <h6 class="font-weight-bold pt-4 pb-1">食譜分類:</h6>
                                 <select name="category" id="inputGroupSelect" class="border p-2 w-100">
                                     <option value="0">請選擇食譜分類</option>
                                     <option value="點心烘焙">點心烘焙</option>
-                                    <option value="健身">健身</option>
+                                    <option selected value="健身">健身</option>
                                 </select>
                                 <h6 class="font-weight-bold pt-4 pb-1">烹調時間（分鐘）:</h6>
-                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="time" />
+                                <input type="text" class="border w-100 p-2 bg-white text-capitalize" name="time" value="20"/>
                                 <!--  上傳照片 -->
                                 <div class="choose-file text-center my-4 py-4 rounded">
                                     <label for="file-upload">
@@ -225,7 +229,7 @@
                                     class="border p-3 w-100"
                                     rows="1"
                                     placeholder="Write the steps about your recipe"
-                                ></textarea>
+                                >將舒肥好的雞胸肉，以及水煮的花椰菜，鋪在熱騰騰的糙米飯上，即可完成，懶人料理，健康美味！</textarea>
                             </div>
                             <!-- <div class="col-lg-6 my-3" id="stepRight"> -->
                                 <!-- <span class="mb-3 d-block">照片</span> -->
@@ -351,5 +355,6 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
         <script src="plugins/google-map/gmap.js"></script>
         <script src="js/upload.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>

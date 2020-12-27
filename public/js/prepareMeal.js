@@ -231,12 +231,8 @@ $('#click').on('click', () => {
         .catch((err) => {
             console.log(err);
         });
-    // $('.slider').owlCarousel({
-    //     loop: true,
-    //     autoplay: true,
-    //     autoplayTimeout: 2000, //2000ms = 2s;
-    //     autoplayHoverPause: true,
-    // });
+    let recommend = document.getElementById('recommend');
+    recommend.style.display = 'block';
 });
 
 function get(selector) {
