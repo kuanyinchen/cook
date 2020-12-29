@@ -3,11 +3,11 @@ const { IdentityStore } = require('aws-sdk');
 const { query } = require('../models/mysqlcon');
 
 router.get('/recipes/all', async (req, res) => {
-    const recipeCounts = await query('SELECT COUNT(*) as count FROM recipeUpload');
+    const recipeCounts = await query('SELECT COUNT(*) as count FROM recipe_upload');
     const recipeCount = recipeCounts[0].count;
 
     const recipesQuery =
-        'SELECT * FROM recipeUpload INNER JOIN recipeAlbum ON recipeUpload.id = recipeAlbum.id ORDER BY recipeUpload.id';
+        'SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id ORDER BY recipe_upload.id';
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
@@ -38,11 +38,11 @@ router.get('/recipes/all', async (req, res) => {
 });
 
 router.get('/recipes/fitness', async (req, res) => {
-    const recipeCounts = await query('SELECT COUNT(*) as count FROM recipeAlbum where category = "健身"');
+    const recipeCounts = await query('SELECT COUNT(*) as count FROM recipe_album where category = "健身"');
     const recipeCount = recipeCounts[0].count;
 
     const recipesQuery =
-        'SELECT * FROM recipeUpload INNER JOIN recipeAlbum ON recipeUpload.id = recipeAlbum.id where recipeAlbum.category = "健身" ORDER BY recipeUpload.id';
+        'SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_album.category = "健身" ORDER BY recipe_upload.id';
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
@@ -73,11 +73,11 @@ router.get('/recipes/fitness', async (req, res) => {
 });
 
 router.get('/recipes/baking', async (req, res) => {
-    const recipeCounts = await query('SELECT COUNT(*) as count FROM recipeAlbum where category = "點心烘焙"');
+    const recipeCounts = await query('SELECT COUNT(*) as count FROM recipe_album where category = "點心烘焙"');
     const recipeCount = recipeCounts[0].count;
 
     const recipesQuery =
-        'SELECT * FROM recipeUpload INNER JOIN recipeAlbum ON recipeUpload.id = recipeAlbum.id where recipeAlbum.category = "點心烘焙" ORDER BY recipeUpload.id';
+        'SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_album.category = "點心烘焙" ORDER BY recipe_upload.id';
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
@@ -110,7 +110,7 @@ router.get('/recipes/baking', async (req, res) => {
 router.get('/recipes/more', async (req, res) => {
     let id = req.query.id;
 
-    const recipesQuery = `SELECT * FROM recipeUpload INNER JOIN recipeAlbum ON recipeUpload.id = recipeAlbum.id where recipeUpload.id = ${id} ORDER BY recipeUpload.id`;
+    const recipesQuery = `SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.id = ${id} ORDER BY recipe_upload.id`;
     const recipe = await query(recipesQuery);
 
     let autoTime = recipe[0].time_record.toISOString();
@@ -140,7 +140,7 @@ router.get('/recipes/more', async (req, res) => {
 router.get('/recipes/search', async (req, res) => {
     let key = req.query.key;
 
-    const recipesQuery = `SELECT * FROM recipeUpload INNER JOIN recipeAlbum ON recipeUpload.id = recipeAlbum.id where recipeUpload.title like '%${key}%' ORDER BY recipeUpload.id`;
+    const recipesQuery = `SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.title like '%${key}%' ORDER BY recipe_upload.id`;
     const recipes = await query(recipesQuery);
 
     for (let i = 0; i < recipes.length; i++) {
@@ -178,7 +178,7 @@ router.post('/meals/calculate', async (req, res) => {
     let proteins = Math.round(body.proteins / 3);
     let fats = Math.round(body.fats / 3);
 
-    const recipesSelect = `SELECT * FROM recipeAlbum INNER JOIN recipeUpload ON recipeUpload.id = recipeAlbum.id where recipeAlbum.carbohydrates between ${carbos}-10 AND ${carbos}+10 || recipeAlbum.proteins between ${proteins}-10 AND ${proteins}+10 || recipeAlbum.fat between ${fats}-10 AND ${fats}+10;`;
+    const recipesSelect = `SELECT * FROM recipe_album INNER JOIN recipe_upload ON recipe_upload.id = recipe_album.id where recipe_album.carbohydrates between ${carbos}-10 AND ${carbos}+10 || recipe_album.proteins between ${proteins}-10 AND ${proteins}+10 || recipe_album.fat between ${fats}-10 AND ${fats}+10;`;
 
     const recipes = await query(recipesSelect);
 
