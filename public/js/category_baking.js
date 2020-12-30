@@ -1,5 +1,5 @@
 axios.get('/api/1.0/recipes/baking').then((res) => {
-    let recipeInfos = res.data.data;
+    let recipeInfos = res.data.data.recipes;
 
     for (let i = 0; i < recipeInfos.length; i++) {
         let frame = document.createElement('div');

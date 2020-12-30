@@ -157,9 +157,8 @@ $('#click').on('click', () => {
     axios
         .post('/api/1.0/meals/calculate', { carbos: carbos, proteins: proteins, fats: fats, bmr: BMR, tdee: TDEE })
         .then((res) => {
-            recipes = res.data.data;
+            recipes = res.data.data.recipes;
 
-            console.log(recipes);
             for (let i = 0; i < recipes.length; i++) {
                 let frame = document.createElement('div');
                 frame.setAttribute('class', 'col-sm-12 col-lg-4 col-md-6');

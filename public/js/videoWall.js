@@ -1,5 +1,5 @@
 axios.get('/api/1.0/video/all').then((res) => {
-    let videoInfos = res.data;
+    let videoInfos = res.data.data.videos;
 
     for (let i = 0; i < videoInfos.length; i++) {
         let frame = document.createElement('div');

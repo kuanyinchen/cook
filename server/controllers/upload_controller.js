@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const Recipe = require('../models/upload_model');
 const jwt = require('jsonwebtoken');
 const { JWT_secret } = process.env;
@@ -9,8 +8,8 @@ const createRecipe = async (req, res) => {
     let mainPhotos = [];
     for (let i = 0; i < req.files.cover.length; i++) {
         let mainPhoto = req.files.cover[i].key;
-        let main_pho = mainPhoto.split('/');
-        mainPhotos.push('http://d26yxr7f4pai8s.cloudfront.net/RecipePic/' + main_pho[1]);
+        let mainPho = mainPhoto.split('/');
+        mainPhotos.push('http://d26yxr7f4pai8s.cloudfront.net/RecipePic/' + mainPho[1]);
     }
 
     let token = body.jwtToken;
@@ -29,7 +28,7 @@ const createRecipe = async (req, res) => {
                 main_photo: JSON.stringify(mainPhotos),
                 step_explain: JSON.stringify(body.step_d),
                 user_name: decoded.name,
-                userID: decoded.id,
+                user_id: decoded.id,
             };
 
             const recipeId = Recipe.createRecipe(recipe);

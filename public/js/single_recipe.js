@@ -3,7 +3,7 @@ let url = new URL(url_string);
 let id = url.searchParams.get('id');
 
 axios.get('/api/1.0/recipes/more', { params: { id: id } }).then((res) => {
-    recipe = res.data.data;
+    recipe = res.data.data.recipe;
     let classTitle = get('.single-post');
     let title = document.createElement('h3');
     title.innerHTML = recipe[0].title;

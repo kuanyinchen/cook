@@ -7,9 +7,6 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
 
-//streaming video
-const fs = require('fs');
-
 //socket.io
 const http = require('http').Server(app);
 const io = require('socket.io')(http);

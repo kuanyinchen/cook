@@ -3,8 +3,8 @@ let url = new URL(url_string);
 let id = url.searchParams.get('id');
 
 axios.get('/api/1.0/video/single', { params: { id: id } }).then((res) => {
-    let videoInfos = res.data;
-    console.log(videoInfos);
+    let videoInfos = res.data.data.video;
+
     let classTitle = get('.single-post');
     let title = document.createElement('h3');
     title.innerHTML = videoInfos[0].title;

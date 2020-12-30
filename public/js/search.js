@@ -3,7 +3,7 @@ let url = new URL(url_string);
 let key = url.searchParams.get('key');
 
 axios.get('/api/1.0/recipes/search', { params: { key: key } }).then((res) => {
-    let recipeInfos = res.data.data;
+    let recipeInfos = res.data.data.recipes;
 
     for (let i = 0; i < recipeInfos.length; i++) {
         let frame = document.createElement('div');
