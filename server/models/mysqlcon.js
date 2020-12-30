@@ -15,10 +15,11 @@ mysqlCon.connect(console.log('has connected'));
 
 const query = (statement, info) => {
     return new Promise((resolve, reject) => {
-        mysqlCon.query(statement, info, (err, result) => {
+        var foo = mysqlCon.query(statement, info, (err, result) => {
             if (err) reject(err);
             resolve(result);
         });
+        console.log(foo.sql);
     });
 };
 

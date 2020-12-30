@@ -78,8 +78,9 @@ const getBakingRecipes = async () => {
 };
 
 const getRecipesDetails = async (id) => {
-    const recipesQuery = `SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.id = ${id} ORDER BY recipe_upload.id`;
-    const recipe = await query(recipesQuery);
+    const recipesQuery =
+        'SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.id = ? ORDER BY recipe_upload.id';
+    const recipe = await query(recipesQuery, id);
 
     const autoTime = recipe[0].time_record.toISOString();
     const time = autoTime.split('T')[0];
@@ -100,8 +101,9 @@ const getRecipesDetails = async (id) => {
 };
 
 const getRecipesSearch = async (key) => {
-    const recipesQuery = `SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.title like '%${key}%' ORDER BY recipe_upload.id`;
-    const recipes = await query(recipesQuery);
+    const recipesQuery =
+        'SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.title like "%"?"%" ORDER BY recipe_upload.id';
+    const recipes = await query(recipesQuery, key); //`%${key}%`
 
     for (let i = 0; i < recipes.length; i++) {
         const autoTime = recipes[i].time_record.toISOString();
