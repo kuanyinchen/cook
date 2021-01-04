@@ -31,7 +31,7 @@ const getSingleVideo = async (id) => {
     const time = autoTime.split('T')[0];
     video[0].time_record = time;
 
-    video[0].videolink = 'http://d26yxr7f4pai8s.cloudfront.net/' + video[0].videolink;
+    video[0].videolink = 'https://d26yxr7f4pai8s.cloudfront.net/' + video[0].videolink;
 
     return { video };
 };
