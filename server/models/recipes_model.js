@@ -102,8 +102,8 @@ const getRecipesDetails = async (id) => {
 
 const getRecipesSearch = async (key) => {
     const recipesQuery =
-        'SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.title like "%"?"%" ORDER BY recipe_upload.id';
-    const recipes = await query(recipesQuery, key); //`%${key}%`
+        'SELECT * FROM recipe_upload INNER JOIN recipe_album ON recipe_upload.id = recipe_album.id where recipe_upload.title like ? ORDER BY recipe_upload.id';
+    const recipes = await query(recipesQuery, `%${key}%`);
 
     for (let i = 0; i < recipes.length; i++) {
         const autoTime = recipes[i].time_record.toISOString();
