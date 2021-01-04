@@ -17,7 +17,7 @@ const getAllVideos = async () => {
         const autoTime = videos[i].time_record.toISOString();
         const time = autoTime.split('T')[0];
         videos[i].time_record = time;
-        videos[i].videolink = 'http://d26yxr7f4pai8s.cloudfront.net/' + videos[i].videolink;
+        videos[i].videolink = 'https://d26yxr7f4pai8s.cloudfront.net/' + videos[i].videolink;
     }
 
     return { videos };

@@ -9,7 +9,7 @@ const createRecipe = async (req, res) => {
     for (let i = 0; i < req.files.cover.length; i++) {
         let mainPhoto = req.files.cover[i].key;
         let mainPho = mainPhoto.split('/');
-        mainPhotos.push('http://d26yxr7f4pai8s.cloudfront.net/RecipePic/' + mainPho[1]);
+        mainPhotos.push('https://d26yxr7f4pai8s.cloudfront.net/RecipePic/' + mainPho[1]);
     }
 
     let token = body.jwtToken;
