@@ -13,8 +13,7 @@ const userRegist = async (r_name, r_email, r_password) => {
 
         const hash = crypto.createHash('sha256');
         hash.update(r_password);
-        hashPassword = hash.copy().digest('hex');
-        console.log(hashPassword);
+        const hashPassword = hash.copy().digest('hex');
 
         const userInfo = {
             name: r_name,
@@ -39,7 +38,7 @@ const userLogin = async (mail, password) => {
 
         const hash = crypto.createHash('sha256');
         hash.update(password);
-        hashPassword = hash.copy().digest('hex');
+        const hashPassword = hash.copy().digest('hex');
 
         if (user.password !== hashPassword) {
             await commit();
