@@ -18,10 +18,8 @@ loadToken = () => {
     column.value = jwtToken;
 };
 
-window.onload = function () {
-    loadingredients();
-    loadToken();
-};
+loadingredients();
+loadToken();
 
 //畫面上原本的食材克數欄位
 $(document).ready(function () {

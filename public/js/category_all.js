@@ -20,7 +20,7 @@ axios.get('/api/1.0/recipes/all').then((res) => {
         //
         let img = document.createElement('img');
         img.setAttribute('class', 'card-img-top img-fluid');
-        img.src = recipeInfos[i].main_photo[1];
+        img.src = recipeInfos[i].main_photo[0];
         //
         a.appendChild(img);
         card_content.appendChild(a);

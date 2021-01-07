@@ -24,7 +24,7 @@ const socketCon = (io) => {
                 title: data[4],
                 category: data[5],
             };
-            const sql = `INSERT INTO recipeAlbum SET ?`;
+            const sql = 'INSERT INTO recipe_album SET ?';
             query(sql, info, (err, rows) => {
                 if (err) throw err;
                 console.log(rows);
