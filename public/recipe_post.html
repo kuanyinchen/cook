@@ -103,7 +103,7 @@
 
         <section class="post bg-gray py-5">
             <div class="container">
-                <form id="form" action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data">
+                <form id="form" action="/api/1.0/upload/recipe" method="POST" enctype="multipart/form-data" onsubmit="return tocheck(this)">
                     <!-- Post Your ad start -->
                     <fieldset class="border border-gary p-4 mb-5">
                         <div class="row">
@@ -231,35 +231,7 @@
                                     placeholder="Write the steps about your recipe"
                                 >將舒肥好的雞胸肉，以及水煮的花椰菜，鋪在熱騰騰的糙米飯上，即可完成，懶人料理，健康美味！</textarea>
                             </div>
-                            <!-- <div class="col-lg-6 my-3" id="stepRight"> -->
-                                <!-- <span class="mb-3 d-block">照片</span> -->
-                                <!-- <span class="mb-3 d-block">1.</span>
-                                <textarea
-                                    name="step_d"
-                                    id="step_d0"
-                                    class="border p-3 w-100"
-                                    rows="7"
-                                    placeholder="Write the steps about your recipe"
-                                ></textarea> -->
-                                <!-- <div class="choose-file text-center my-2.5 py-4 ">
-                                    <label for="file-upload">
-                                        <span class="d-block font-weight-bold text-dark"
-                                            >Drop files anywhere to upload</span
-                                        >
-                                        <span class="d-block">or</span>
-                                        <span class="d-block btn bg-primary text-white my-3 select-files"
-                                            >Select files</span
-                                        >
-                                        <span class="d-block">Maximum upload file size: 500 KB</span>
-                                        <input
-                                            type="file"
-                                            class="form-control-file d-none"
-                                            id="file-upload"
-                                            name="step_p" multiple
-                                        />
-                                    </label>
-                                </div> -->
-                            <!-- </div> -->
+                            
                         </div>
                     </fieldset>
                        

@@ -6,6 +6,7 @@ const createRecipe = async (req, res) => {
     const body = req.body;
 
     let mainPhotos = [];
+    if (req.files.cover == undefined) return res.status(200).json({ error: 'there is no picture' });
     for (let i = 0; i < req.files.cover.length; i++) {
         let mainPhoto = req.files.cover[i].key;
         let mainPho = mainPhoto.split('/');

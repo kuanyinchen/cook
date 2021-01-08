@@ -51,6 +51,10 @@ $(document).ready(function () {
         document.getElementById('fat0').innerHTML = data.fat;
         document.getElementById('carbohydrates0').innerHTML = data.carbohydrates;
     });
+
+    socket.on('error_message', function (data) {
+        console.log(data);
+    });
 });
 
 //append新的食材克數格子 //原本的
@@ -104,6 +108,10 @@ $('#btn-add-row').click(() => {
             document.getElementById('fat' + i).innerHTML = data.fat;
             document.getElementById('carbohydrates' + i).innerHTML = data.carbohydrates;
         });
+
+        socket.on('error_message', function (data) {
+            console.log(data);
+        });
     });
     eleId++;
 });
@@ -117,6 +125,16 @@ $('#btn-sum').click(() => {
     const total_pro = document.getElementById('total_proteins');
     const total_carbo = document.getElementById('total_carbohydrates');
     const total_f = document.getElementById('total_fats');
+
+    if (cal.length < 2) {
+        swal({
+            title: 'Oops',
+            text: 'Need at least 2 ingredients',
+            icon: 'error',
+            buttons: false,
+        });
+        return;
+    }
     calArray = [];
     for (let calories of cal) {
         calArray.push(parseInt(calories.innerHTML));
@@ -156,6 +174,48 @@ $('#btn-add-step').click(() => {
     stepId++;
 });
 
+function tocheck() {
+    let frm = document.forms['form'];
+    if (frm.title.value == '') {
+        swal({
+            title: 'Oops',
+            text: 'Remember to write title',
+            icon: 'error',
+        });
+        return false;
+    } else if (frm.quantity.value == '') {
+        swal({
+            title: 'Oops',
+            text: 'Remember to write size',
+            icon: 'error',
+        });
+        return false;
+    } else if (frm.description.value == '') {
+        swal({
+            title: 'Oops',
+            text: 'Remember to write description',
+            icon: 'error',
+        });
+        return false;
+    } else if (document.getElementById('file-upload').value == '') {
+        swal({
+            title: 'Oops',
+            text: 'Remember to upload recipe image',
+            icon: 'error',
+        });
+        return false;
+    } else if (document.getElementById('total_calories').innerHTML == '') {
+        swal({
+            title: 'Oops',
+            text: 'Remember to calculate',
+            icon: 'error',
+        });
+        return false;
+    } else {
+        frm.submit();
+    }
+}
+
 //form 送出的時候
 $('#click').on('click', function () {
     const socket = io();
@@ -166,9 +226,8 @@ $('#click').on('click', function () {
     let sum_fat = document.getElementById('total_fats').innerHTML;
     let category = document.getElementById('inputGroupSelect').value;
     let set = [sum_calories, sum_proteins, sum_carbohydrates, sum_fat, title, category]; //[1,2,3,4]
-    console.log(set);
-    socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
 
+    socket.emit('total_nutritions', set); //傳最後加總的營養素到Server
     swal({
         title: 'Success',
         text: 'Thanks for sharing',
