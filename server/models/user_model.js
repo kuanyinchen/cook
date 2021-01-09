@@ -5,7 +5,7 @@ const { query, transaction, commit, rollback } = require('./mysqlcon');
 const userRegist = async (r_name, r_email, r_password) => {
     try {
         await transaction();
-        const email = await query('SELECT email FROM member WHERE email = ?', [r_email]);
+        const email = await query('SELECT email FROM user WHERE email = ?', [r_email]);
         if (email.length > 0) {
             await commit();
             return { error: 'Email has already exists' };
@@ -20,7 +20,7 @@ const userRegist = async (r_name, r_email, r_password) => {
             email: r_email,
             password: hashPassword,
         };
-        const statement = 'Insert INTO member SET?';
+        const statement = 'Insert INTO user SET?';
         const result = query(statement, userInfo);
         await commit();
         return { userInfo };
@@ -33,7 +33,7 @@ const userRegist = async (r_name, r_email, r_password) => {
 const userLogin = async (mail, password) => {
     try {
         await transaction();
-        const userCheck = await query('SELECT * FROM member WHERE email = ?', [mail]);
+        const userCheck = await query('SELECT * FROM user WHERE email = ?', [mail]);
         const user = userCheck[0];
 
         const hash = crypto.createHash('sha256');
