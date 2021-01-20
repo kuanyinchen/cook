@@ -59,7 +59,7 @@ Website Link : [https://justmake.site/](https://justmake.site/)
 <br>
 
 ## Architecture
-[![](https://preludewebsite.s3-ap-northeast-1.amazonaws.com/Readme/Just+Make.png)](https://preludewebsite.s3-ap-northeast-1.amazonaws.com/Readme/Just+Make.png)
+[![](https://preludewebsite.s3-ap-northeast-1.amazonaws.com/Readme/Just+Make+(1).png)](https://preludewebsite.s3-ap-northeast-1.amazonaws.com/Readme/Just+Make+(1).png)
 <br>
 
 ## Database Schema ##
