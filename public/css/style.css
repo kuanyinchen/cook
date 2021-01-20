@@ -2807,4 +2807,11 @@ form textarea {
     background: #cbb8a9;
 }
 
+input:valid {
+    border: 1px solid green;
+}
+input:invalid {
+    border: 1px solid red;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

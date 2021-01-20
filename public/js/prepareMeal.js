@@ -12,6 +12,8 @@ const BMR = () => {
 
             if (!ages || !heights || !weights) return;
 
+            if (ages > 100 || ages < 0 || heights > 200 || heights < 0 || weights > 300 || weights < 0) return;
+
             if (gender == 'male') {
                 document.getElementById('bmr').value = Math.round(calculate(ages, heights, weights) + 5);
             } else {
@@ -26,6 +28,7 @@ const BMR = () => {
         let weights = parseInt(document.getElementById('kg').value);
 
         if (!gender || !heights || !weights) return;
+        if (ages > 100 || ages < 0 || heights > 200 || heights < 0 || weights > 300 || weights < 0) return;
 
         if (gender == 'male') {
             document.getElementById('bmr').value = Math.round(calculate(ages, heights, weights) + 5);
@@ -41,6 +44,7 @@ const BMR = () => {
         let weights = parseInt(document.getElementById('kg').value);
 
         if (!gender || !heights || !weights) return;
+        if (ages > 100 || ages < 0 || heights > 200 || heights < 0 || weights > 300 || weights < 0) return;
 
         if (gender == 'male') {
             document.getElementById('bmr').value = Math.round(calculate(ages, heights, weights) + 5);
@@ -56,6 +60,7 @@ const BMR = () => {
         let heights = parseInt(document.getElementById('cm').value);
 
         if (!gender || !heights || !weights) return;
+        if (ages > 100 || ages < 0 || heights > 200 || heights < 0 || weights > 300 || weights < 0) return;
 
         if (gender == 'male') {
             document.getElementById('bmr').value = Math.round(calculate(ages, heights, weights) + 5);
@@ -154,6 +159,8 @@ $('#click').on('click', () => {
     let proteins = parseInt(document.getElementById('P').value);
     let fats = parseInt(document.getElementById('F').value);
 
+    if (!BMR || !TDEE || BMR < 0) return;
+
     axios
         .post('/api/1.0/meals/calculate', { carbos: carbos, proteins: proteins, fats: fats, bmr: BMR, tdee: TDEE })
         .then((res) => {
@@ -232,6 +239,19 @@ $('#click').on('click', () => {
         });
     let recommend = document.getElementById('recommend');
     recommend.style.display = 'block';
+});
+
+let inputs = document.querySelectorAll('input');
+inputs.forEach((input) => {
+    input.addEventListener('input', () => {
+        if (input.checkValidity()) {
+            input.classList.add('valid');
+            input.classList.remove('invalid');
+        } else {
+            input.classList.add('valid');
+            input.classList.remove('invalid');
+        }
+    });
 });
 
 function get(selector) {

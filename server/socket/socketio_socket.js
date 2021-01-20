@@ -11,7 +11,7 @@ const socketCon = (io) => {
                 await query(sql, function (err, rows) {
                     if (err) throw err;
                     if (rows.length == 0) {
-                        socket.emit('error_message', { error: 'there is no result' });
+                        socket.emit('error_message', { error: 'Ingredient does not exist' });
                     } else {
                         socket.emit('nutrition_from_db', {
                             calories: rows[0].calories * grams,

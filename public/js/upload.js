@@ -42,6 +42,9 @@ $(document).ready(function () {
             gram: selectGramsEle.value,
         };
         socket.emit('query_nutrition', set);
+        socket.on('error_message', function (data) {
+            alert(data.error);
+        });
         return false;
     });
 
@@ -50,10 +53,6 @@ $(document).ready(function () {
         document.getElementById('proteins0').innerHTML = data.protein;
         document.getElementById('fat0').innerHTML = data.fat;
         document.getElementById('carbohydrates0').innerHTML = data.carbohydrates;
-    });
-
-    socket.on('error_message', function (data) {
-        console.log(data);
     });
 });
 
@@ -98,6 +97,9 @@ $('#btn-add-row').click(() => {
                     gram: selectGramsEle.value,
                 };
                 socket.emit('query_nutrition', set);
+                socket.on('error_message', function (data) {
+                    alert(data.error);
+                });
                 return false;
             });
         });
@@ -107,10 +109,6 @@ $('#btn-add-row').click(() => {
             document.getElementById('proteins' + i).innerHTML = data.protein;
             document.getElementById('fat' + i).innerHTML = data.fat;
             document.getElementById('carbohydrates' + i).innerHTML = data.carbohydrates;
-        });
-
-        socket.on('error_message', function (data) {
-            console.log(data);
         });
     });
     eleId++;
@@ -125,6 +123,18 @@ $('#btn-sum').click(() => {
     const total_pro = document.getElementById('total_proteins');
     const total_carbo = document.getElementById('total_carbohydrates');
     const total_f = document.getElementById('total_fats');
+
+    for (let i = 0; i < cal.length; i++) {
+        if (cal[i].innerText == '') {
+            swal({
+                title: 'Oops',
+                text: 'Ingredients does not exist,please check again.',
+                icon: 'error',
+                buttons: false,
+            });
+            return;
+        }
+    }
 
     if (cal.length < 2) {
         swal({
